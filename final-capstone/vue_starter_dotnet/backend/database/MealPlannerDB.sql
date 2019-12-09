@@ -17,7 +17,7 @@
 	CREATE TABLE Recipe (
 	id integer IDENTITY NOT NULL,
 	name nvarchar(64) NOT NULL,
-	author nvarchar(64) NOT NULL,
+	author nvarchar(64) DEFAULT 'anon',
 	intructions nvarchar(max) NOT NULL,
 	vegan bit NOT NULL,
 	vegetarian bit NOT NULL,
@@ -32,7 +32,7 @@
 
 	CREATE TABLE Ingredient (
 	id integer IDENTITY NOT NULL,
-	name nvarchar(30) NOT NULL,
+	name nvarchar(100) NOT NULL,
 	CONSTRAINT pk_ingredient_id PRIMARY KEY (id)
 	); 
 
@@ -47,8 +47,9 @@
 	CREATE TABLE Meal_Plan (
 	recipe_id integer NOT NULL,
 	username nvarchar(64) NOT NULL,
-	meal_time smallint NOT NULL, --between 0 and 21 
-	CONSTRAINT pk_meal_plan_username_meal_time PRIMARY KEY (username, meal_time)
+	meal_slot smallint NOT NULL, --between 0 and 5 breakfast, lunch, dinner, snack, Not Specified  
+	meal_date Date NOT NULL,
+	CONSTRAINT pk_meal_plan_username_meal_date_meal_slot PRIMARY KEY (username, meal_date, meal_slot)
 	);
 
 	CREATE TABLE Account (
@@ -68,8 +69,8 @@
 	CREATE TABLE ingredient_recipe (
 	recipe_id integer NOT NULL,
 	ingredient_id INTEGER NOT NULL,
-	quanitity integer NOT NULL,
-	unit_of_measurement nvarchar(15) NOT NULL,
+	quanitity numeric NOT NULL,
+	unit_of_measurement nvarchar(15),
 	CONSTRAINT pk_ingredient_id__recipe_id PRIMARY KEY (recipe_id, ingredient_id)
 	);
 	
@@ -119,6 +120,58 @@
 
 	BEGIN TRAN
 
-	INSERT INTO Ingredient(name) VALUES ('chicken');
+	DBCC CHECKIDENT ('recipe', RESEED, 1)
+	DBCC CHECKIDENT ('ingredient', RESEED, 1)
 
-	ROLLBACK TRAN
+	INSERT INTO account(username, password, display_name) VALUES ('anon', '', 'Anonymous User')
+
+	INSERT INTO Ingredient(name) VALUES ('extra-virgin olive oil');
+	INSERT INTO Ingredient(name) VALUES ('diced onion');
+	INSERT INTO Ingredient(name) VALUES ('cloves garlic, minced');
+	INSERT INTO Ingredient(name) VALUES ('ground cumin');
+	INSERT INTO Ingredient(name) VALUES ('chili powder');
+	INSERT INTO Ingredient(name) VALUES ('dried oregano');
+	INSERT INTO Ingredient(name) VALUES ('shredded chicken, cooked');
+	INSERT INTO Ingredient(name) VALUES ('green enchilada sauce, divided');
+	INSERT INTO Ingredient(name) VALUES ('can chopped hatch chile peppers, drained');
+	INSERT INTO Ingredient(name) VALUES ('large zucchini, halved lengthwise');
+	INSERT INTO Ingredient(name) VALUES ('shredded cheddar-monterey jack cheese blend');
+	INSERT INTO Ingredient(name) VALUES ('chopped fresh cilantro');
+
+	INSERT INTO recipe(name,  intructions, vegan, vegetarian, gluten_free, cook_time_in_mins, prep_time_in_mins, serves, difficulity, category) VALUES ('Chicken Zucchini Enchiladas',  
+'Step 1
+Preheat the oven to 350 degrees F (175 degrees C).
+
+Step 2
+Heat oil in a large skillet over medium heat. Add onion and cook until soft, about 5 minutes. Add garlic, cumin, chili powder, and oregano. Stir until combined. Add shredded chicken, 1 cup enchilada sauce, and green chiles. Stir until well combined.
+
+Step 3
+Slice zucchini into thin, wide sheets using a vegetable peeler or a mandoline. Lay out 3 zucchini slices, slightly overlapping, and place a spoonful of the chicken mixture on top. Roll up and transfer to a baking dish. Repeat with remaining zucchini and chicken mixture.
+
+Step 4
+Spread remaining 1/3 cup enchilada sauce over zucchini enchiladas. Sprinkle with Cheddar-Jack cheese blend.
+
+Step 5
+Bake in the preheated oven until cheese has melted, about 20 minutes. Garnish with fresh cilantro.', 0, 0, 0, 25, 25, 4, 'Beginner', 'Mexican');
+
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (1, 1, 1, 'tablespoon');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity) VALUES (2, 1, 1);
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity) VALUES (3, 1, 2);
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (4, 1, 2, 'teaspoon');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (5, 1, 2, 'teaspoon');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (6, 1, 0.5, 'teaspoon')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (7, 1, 3, 'cups')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (8, 1, 1.33, 'cups')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (9, 1, 4, 'ounces')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity) VALUES (10, 1, 4)
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (11, 1, 1, 'cup')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (12, 1, 0.25, 'cup')
+
+
+	commit TRAN
+
+	select * from recipe
+	select * from ingredient_recipe
+	SELECT recipe.*, ingredient.*, ingredient_recipe.quanitity, ingredient_recipe.unit_of_measurement FROM recipe
+	JOIN ingredient_recipe ON recipe.id = ingredient_recipe.recipe_id
+	JOIN Ingredient ON Ingredient.id = ingredient_recipe.ingredient_id
