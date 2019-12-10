@@ -16,14 +16,14 @@
 	id integer IDENTITY NOT NULL,
 	name nvarchar(64) NOT NULL,
 	author nvarchar(64) DEFAULT 'anon',
-	intructions nvarchar(max) NOT NULL,
+	instructions nvarchar(max) NOT NULL,
 	vegan bit DEFAULT 0,
 	vegetarian bit DEFAULT 0,
 	gluten_free bit DEFAULT 0,
 	cook_time_in_mins integer NOT NULL,
 	prep_time_in_mins integer NOT NULL,
 	serves integer,
-	difficulity nvarchar(30),
+	difficulty nvarchar(30),
 	category nvarchar(20) NOT NULL,
 	CONSTRAINT pk_recipe_id PRIMARY KEY (id)
 	);
@@ -149,7 +149,7 @@
 	INSERT INTO Ingredient(name) VALUES ('shredded cheddar-monterey jack cheese blend');
 	INSERT INTO Ingredient(name) VALUES ('chopped fresh cilantro');
 
-	INSERT INTO recipe(name,  intructions, vegan, vegetarian, gluten_free, cook_time_in_mins, prep_time_in_mins, serves, difficulity, category) VALUES ('Chicken Zucchini Enchiladas',  
+	INSERT INTO recipe(name,  instructions, vegan, vegetarian, gluten_free, cook_time_in_mins, prep_time_in_mins, serves, difficulty, category) VALUES ('Chicken Zucchini Enchiladas',  
 'Step 1
 Preheat the oven to 350 degrees F (175 degrees C).
 
@@ -182,3 +182,5 @@ INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measu
 	SELECT recipe.*, ingredient.*, ingredient_recipe.quantity, ingredient_recipe.unit_of_measurement FROM recipe
 	JOIN ingredient_recipe ON recipe.id = ingredient_recipe.recipe_id
 	JOIN Ingredient ON Ingredient.id = ingredient_recipe.ingredient_id
+
+
