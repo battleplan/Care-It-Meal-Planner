@@ -32,20 +32,32 @@ namespace SampleApi.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("INSERT INTO recipe(name, instructions, vegan, vegetarian, gluten_free, cook_time_in_mins, prep_time_in_mins, serves, difficulty, category)" +
+                    SqlCommand addRec = new SqlCommand("INSERT INTO recipe(name, instructions, vegan, vegetarian, gluten_free, cook_time_in_mins, prep_time_in_mins, serves, difficulty, category)" +
                         " VALUES (@Name, @IN, @Vegan, @VG, @GF, @CT, @PT, @Serves, @Difficulty, @Category); SELECT @@IDENTITY", conn);
-                    cmd.Parameters.AddWithValue("@Name", newRecipe.Name);
-                    cmd.Parameters.AddWithValue("@IN", newRecipe.Instructions);
-                    cmd.Parameters.AddWithValue("@Vegan", newRecipe.Vegan);
-                    cmd.Parameters.AddWithValue("@VG", newRecipe.Vegetarian);
-                    cmd.Parameters.AddWithValue("@GF", newRecipe.GlutenFree);
-                    cmd.Parameters.AddWithValue("@CT", newRecipe.CookTime);
-                    cmd.Parameters.AddWithValue("@PT", newRecipe.PrepTime);
-                    cmd.Parameters.AddWithValue("@Serves", newRecipe.Servings);
-                    cmd.Parameters.AddWithValue("@Difficulty", newRecipe.Difficulty);
-                    cmd.Parameters.AddWithValue("@Category", newRecipe.Category);
+                    addRec.Parameters.AddWithValue("@Name", newRecipe.Name);
+                    addRec.Parameters.AddWithValue("@IN", newRecipe.Instructions);
+                    addRec.Parameters.AddWithValue("@Vegan", newRecipe.Vegan);
+                    addRec.Parameters.AddWithValue("@VG", newRecipe.Vegetarian);
+                    addRec.Parameters.AddWithValue("@GF", newRecipe.GlutenFree);
+                    addRec.Parameters.AddWithValue("@CT", newRecipe.CookTime);
+                    addRec.Parameters.AddWithValue("@PT", newRecipe.PrepTime);
+                    addRec.Parameters.AddWithValue("@Serves", newRecipe.Servings);
+                    addRec.Parameters.AddWithValue("@Difficulty", newRecipe.Difficulty);
+                    addRec.Parameters.AddWithValue("@Category", newRecipe.Category);
 
-                    newRecipe.Id = Convert.ToInt32(cmd.ExecuteScalar());
+                    newRecipe.Id = Convert.ToInt32(addRec.ExecuteScalar());
+
+                    foreach (Ingredient ingredient in newRecipe.Ingredients)
+                    {
+                        SqlCommand addIng = new SqlCommand("INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (@ingId, @recId, @QN, @UM))", conn);
+                        addIng.Parameters.AddWithValue("@ingId", ingredient.Id);
+                        addIng.Parameters.AddWithValue("@recid", newRecipe.Id);
+                        addIng.Parameters.AddWithValue("@QN", ingredient.Quantity);
+                        addIng.Parameters.AddWithValue("@UM", ingredient.UnitOfMeasurement);
+
+                        addIng.ExecuteNonQuery();
+                    
+                    }
 
                     return true;
                 }
@@ -121,7 +133,7 @@ namespace SampleApi.DAL
                       
 
                         SqlCommand getIng = new SqlCommand(@"
-                            SELECT ingredient.id as id, ingredient.name as ingname, ingredient_recipe.quanitity as quan, ingredient_recipe.unit_of_measurement as unit FROM recipe
+                            SELECT ingredient.id as id, ingredient.name as ingname, ingredient_recipe.quantity as quan, ingredient_recipe.unit_of_measurement as unit FROM recipe
                             JOIN ingredient_recipe ON recipe.id = ingredient_recipe.recipe_id
                             JOIN Ingredient ON Ingredient.id = ingredient_recipe.ingredient_id
                             WHERE recipe.id = @Recipe", conn);
@@ -235,14 +247,14 @@ namespace SampleApi.DAL
                 Id = Convert.ToInt32(reader["id"]),
                 Name = Convert.ToString(reader["name"]),
                 Author = Convert.ToString(reader["author"]),
-                Instructions = Convert.ToString(reader["intructions"]),
+                Instructions = Convert.ToString(reader["instructions"]),
                 Vegan = Convert.ToBoolean(reader["vegan"]),
                 Vegetarian = Convert.ToBoolean(reader["vegetarian"]),
                 GlutenFree = Convert.ToBoolean(reader["gluten_free"]),
                 CookTime = Convert.ToInt32(reader["cook_time_in_mins"]),
                 PrepTime = Convert.ToInt32(reader["prep_time_in_mins"]),
                 Servings = Convert.ToInt32(reader["serves"]),
-                Difficulty = Convert.ToString(reader["difficulity"]),
+                Difficulty = Convert.ToString(reader["difficulty"]),
                 Category = Convert.ToString(reader["category"]),
             };
 

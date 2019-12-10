@@ -82,7 +82,7 @@ namespace SampleApi
             services.AddSingleton<ITokenGenerator>(tk => new JwtGenerator(Configuration["JwtSecret"]));
             services.AddSingleton<IPasswordHasher>(ph => new PasswordHasher());
             services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Default")));
-            services.AddSingleton<IRecipeDAO, RecipeSqlDAO>();
+            services.AddSingleton<IRecipeDAO>(m => new RecipeSqlDAO(Configuration.GetConnectionString("RecipeDB")));
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
