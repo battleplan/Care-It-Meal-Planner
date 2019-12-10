@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace SampleApi.Models
 {
+    /// <summary>
+    /// Model for a single ingredient
+    /// </summary>
     public class Ingredient
     {
         /// <summary>
