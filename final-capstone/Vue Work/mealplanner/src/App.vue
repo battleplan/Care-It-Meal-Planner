@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <navigation></navigation>
+    <search-bar></search-bar>
     <card-slider></card-slider>
+    
     <home-menu>
-    </home-menu>
+ </home-menu>
   </div>
 </template>
 
@@ -11,12 +13,15 @@
 import HomeMenu from './components/HomeMenu.vue'
 import Navigation from './components/Navigation.vue'
 import CardSlider from './components/CardSlider.vue'
+import SearchBar from './components/SearchBar.vue'
+
 export default {
   name: 'app',
   components: {
     HomeMenu,
     Navigation,
-    CardSlider
+    CardSlider,
+    SearchBar
   }
 }
 </script>
