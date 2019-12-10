@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SampleApi.DAL
 {
-    interface IRecipeDAO
+    public interface IRecipeDAO
     {
         IList<Recipe> GetAllRecipes();
 
