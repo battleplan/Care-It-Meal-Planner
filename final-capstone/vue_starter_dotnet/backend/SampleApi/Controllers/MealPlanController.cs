@@ -68,7 +68,26 @@ namespace SampleApi.Controllers
             }
             return null;
         }
-        //TODO Delete
+
+        /// <summary>
+        /// API call for deleting a recipe from a database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public ActionResult DeleteRecipe(int id)
+        {
+            Recipe recipe = dao.GetRecipeById(id);
+
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+
+            dao.DeleteRecipe(recipe);
+            return NoContent();
+        }
+
         //TODO Modify recipes
     }
 }
