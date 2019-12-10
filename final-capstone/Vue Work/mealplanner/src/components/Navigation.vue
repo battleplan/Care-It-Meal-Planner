@@ -3,8 +3,8 @@
       <nav>
           Category  |  Faves |  Recent
           <!-- <router-link to="/categories"> </router-link> -->
-          <img src="/img/plus-sign.png">
-          <img src="/img/magnifying-glass.png">
+          <img class="nv" src="/img/plus-sign.png">
+          <img class="nv" src="/img/magnifying-glass.png">
 
       </nav>
   </div>
@@ -17,7 +17,7 @@ export default {
 </script>
 
 <style>
-img {
+.nv {
     width: 15px;
     padding-left:10px;
 }
