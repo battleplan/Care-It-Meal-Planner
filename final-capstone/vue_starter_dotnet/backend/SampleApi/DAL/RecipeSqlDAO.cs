@@ -96,9 +96,49 @@ namespace SampleApi.DAL
             }
         }
 
-        public bool EditRecipe(Recipe oldRecipe)
+        /// <summary>
+        /// Edits an existing recipe stored in the database
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
+        public bool EditRecipe(Recipe recipe)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    //Delete old recipe ingredients
+                    SqlCommand cmd = new SqlCommand("DELETE FROM ingredient_recipe where recipe_id = @recId", conn);
+
+                    cmd.ExecuteNonQuery();
+
+                    // add new ingredients to the old recipe
+                    foreach (Ingredient ingredient in recipe.Ingredients)
+                    {
+                        SqlCommand addIng = new SqlCommand("INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (@ingId, @recId, @QN, @UM)", conn);
+                        addIng.Parameters.AddWithValue("@ingId", ingredient.Id);
+                        addIng.Parameters.AddWithValue("@recid", recipe.Id);
+                        addIng.Parameters.AddWithValue("@QN", ingredient.Quantity);
+                        addIng.Parameters.AddWithValue("@UM", ingredient.UnitOfMeasurement);
+
+                        addIng.ExecuteNonQuery();
+                    }
+
+                    //updates name and intructions
+                    SqlCommand upd = new SqlCommand("UPDATE recipe SET name = @Name, instructions = @instruc, WHERE id = @id", conn);
+                    upd.Parameters.AddWithValue("@Name", recipe.Name);
+                    upd.Parameters.AddWithValue("@intruc", recipe.Instructions);
+                    upd.Parameters.AddWithValue("@id", recipe.Id);
+
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
