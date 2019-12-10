@@ -9,17 +9,26 @@ using SampleApi.Models;
 
 namespace SampleApi.Controllers
 {
+    /// <summary>
+    /// api for getting the recipes for our project
+    /// </summary>
     [Route("api/meal")]
     [ApiController]
     public class MealPlanController : ControllerBase
     {
         private  IRecipeDAO dao;
-
+        /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="dao"></param>
         public MealPlanController(IRecipeDAO dao)
         {
             this.dao = dao;
         }
-
+        /// <summary>
+        /// API call for getting ALL the recipes
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult<IList<Recipe>> GetAll()
         {
@@ -28,5 +37,38 @@ namespace SampleApi.Controllers
             // Return 200 OK
             return Ok(reviews);
         }
+        /// <summary>
+        /// API call for getting a scpecific recipe
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}", Name = "GetRecipeById")]
+        public ActionResult<Recipe> GetRecipeById(int id)
+        {
+            Recipe recipe = dao.GetRecipeById(id);
+            
+            if(recipe == null)
+            {
+                return NotFound();
+            }
+            return Ok(recipe);
+        }
+        /// <summary>
+        /// API call for adding a recipe to the database
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult<Recipe> AddRecipe([FromBody]Recipe recipe)
+        {
+            bool worked = dao.CreateRecipe(recipe);
+            if (worked)
+            {
+                return CreatedAtRoute("GetRecipeById", new { id = recipe.Id }, recipe);
+            }
+            return null;
+        }
+        //TODO Delete
+        //TODO Modify recipes
     }
 }
