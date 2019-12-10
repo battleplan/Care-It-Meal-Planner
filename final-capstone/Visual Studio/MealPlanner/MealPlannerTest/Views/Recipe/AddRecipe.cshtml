@@ -1,0 +1,58 @@
+﻿@model RecipeU
+@{
+    ViewData["Title"] = "Add Recipe";
+}
+
+<h2>Add Recipe</h2>
+
+<form method="post">
+    <table>
+        <tr>
+            <td><label asp-for="Name"></label></td>
+            <td><input asp-for="Name" /><span asp-validation-for="Name" class="error"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Author"></label></td>
+            <td><input asp-for="Author" /><span asp-validation-for="Author" class="error"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="CookTimeMin"></label></td>
+            <td><input asp-for="CookTimeMin" /><span asp-validation-for="CookTimeMin" class="error"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="PrepTimeMin"></label></td>
+            <td><input asp-for="PrepTimeMin" /><span asp-validation-for="PrepTimeMin" class="error"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Servings"></label></td>
+            <td><input asp-for="Servings" /><span asp-validation-for="Servings" class="error"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Difficulty"></label></td>
+            <td><input asp-for="Difficulty" /><span asp-validation-for="Difficulty" class="error"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Category"></label></td>
+            <td><input asp-for="Category" /><span asp-validation-for="Category" class="error"></span></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Vegan"></label></td>
+            <td><input asp-for="Vegan" value="0"/></td>
+        </tr>
+        <tr>
+            <td><label asp-for="Vegetarian"></label></td>
+            <td><input asp-for="Vegetarian" value="0" /></td>
+        </tr>
+        <tr>
+            <td><label asp-for="GlutenFree"></label></td>
+            <td><input asp-for="GlutenFree" value="0" /></td>
+        </tr>
+
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Add Recipe" /></td>
+        </tr>
+    </table>
+
+</form>

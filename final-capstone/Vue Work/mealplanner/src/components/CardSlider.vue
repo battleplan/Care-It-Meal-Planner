@@ -87,8 +87,8 @@ width: 15px;
 height: 15px;
 padding: 10px;
 box-sizing: border-box;
-border-top: 2px solid #42b883;
-border-right: 2px solid #42b883;
+border-top: 2px solid black;
+border-right: 2px solid black;
 cursor: pointer;
 margin: 0 20px;
 transition: transform 150ms linear;
@@ -142,6 +142,7 @@ opacity: 0.5;
  .card-carousel-cards .card-carousel--card--footer {
 border-top: 0;
 padding: 7px 15px;
+background-color: #fba919;
 }
  .card-carousel-cards .card-carousel--card--footer p {
 padding: 3px 0;
@@ -149,7 +150,7 @@ margin: 0;
 margin-bottom: 2px;
 font-size: 19px;
 font-weight: 500;
-color: #2c3e50;
+color: white;
 user-select: none;
 }
  .card-carousel-cards .card-carousel--card--footer p.tag {
@@ -160,7 +161,7 @@ background: rgba(40, 44, 53, .06);
 display: inline-block;
 position: relative;
 margin-left: 4px;
-color: #666a73;
+color:white;
 }
  .card-carousel-cards .card-carousel--card--footer p.tag:before {
 content: "";
@@ -176,7 +177,7 @@ border-width: 8px 12px 12px 0;
 }
  .card-carousel-cards .card-carousel--card--footer p.tag.secondary {
 margin-left: 0;
-border-left: 1.45px dashed white;
+
 }
  .card-carousel-cards .card-carousel--card--footer p.tag.secondary:before {
 display: none !important;

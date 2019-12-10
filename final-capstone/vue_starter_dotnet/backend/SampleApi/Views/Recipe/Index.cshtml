@@ -1,0 +1,23 @@
+﻿@using SampleApi.Models
+@model IList<Recipe>
+
+@{
+    ViewData["Title"] = "Recipes";
+}
+
+<h1>Pick a recipe to get the details</h1>
+
+<form method="post" asp-controller="Recipe" asp-action="Detail">
+
+    <select name="id">
+        @{
+            foreach (var recipe in @Model)
+            {
+                <option value="@recipe.Id">
+                    @recipe.Name
+                </option>
+            }
+        }
+    </select>
+    <input type="submit" value="Go to Recipe!" />
+</form>
