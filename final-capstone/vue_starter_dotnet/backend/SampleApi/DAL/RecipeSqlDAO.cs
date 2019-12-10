@@ -33,7 +33,7 @@ namespace SampleApi.DAL
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand("INSERT INTO recipe(name, instructions, vegan, vegetarian, gluten_free, cook_time_in_mins, prep_time_in_mins, serves, difficulty, category)" +
-                        " VALUES (@Name, @IN, @Vegan, @VG, @GF, @CT, @PT, @Serves, @Difficulty, @Category)", conn);
+                        " VALUES (@Name, @IN, @Vegan, @VG, @GF, @CT, @PT, @Serves, @Difficulty, @Category); SELECT @@IDENTITY", conn);
                     cmd.Parameters.AddWithValue("@Name", newRecipe.Name);
                     cmd.Parameters.AddWithValue("@IN", newRecipe.Instructions);
                     cmd.Parameters.AddWithValue("@Vegan", newRecipe.Vegan);
@@ -45,7 +45,7 @@ namespace SampleApi.DAL
                     cmd.Parameters.AddWithValue("@Difficulty", newRecipe.Difficulty);
                     cmd.Parameters.AddWithValue("@Category", newRecipe.Category);
 
-                    cmd.ExecuteNonQuery();
+                    newRecipe.Id = Convert.ToInt32(cmd.ExecuteScalar());
 
                     return true;
                 }
