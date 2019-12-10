@@ -14,7 +14,7 @@ namespace SampleApi.Controllers
     /// <summary>
     /// Creates a new account controller used to authenticate the user.
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/accounts")]
     [ApiController]
     public class AccountController : ControllerBase
     {

@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 
 namespace SampleApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/values")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
