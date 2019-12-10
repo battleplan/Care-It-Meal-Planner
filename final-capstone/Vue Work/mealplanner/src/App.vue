@@ -1,27 +1,28 @@
 <template>
   <div id="app">
-    <navigation></navigation>
-    <search-bar></search-bar>
+    <div id="nav">
+      <router-link to="/">Main</router-link>
+      <router-link to="/recipes">Recipes</router-link>
+    </div>
+    <router-view />
+<!--     <search-bar></search-bar>
     <card-slider></card-slider>
-    
-    <home-menu>
- </home-menu>
+    <navigation></navigation> -->
   </div>
 </template>
 
 <script>
-import HomeMenu from './components/HomeMenu.vue'
-import Navigation from './components/Navigation.vue'
+/* import Navigation from './components/Navigation.vue'
 import CardSlider from './components/CardSlider.vue'
-import SearchBar from './components/SearchBar.vue'
+import SearchBar from './components/SearchBar.vue' */
+
 
 export default {
   name: 'app',
   components: {
-    HomeMenu,
-    Navigation,
+/*      Navigation,
     CardSlider,
-    SearchBar
+    SearchBar */
   }
 }
 </script>
