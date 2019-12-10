@@ -18,6 +18,12 @@ namespace SampleApi.DAL
         
         //DAO Methods
 
+
+        /// <summary>
+        /// Adds a new Recipe to the database 
+        /// </summary>
+        /// <param name="newRecipe"></param>
+        /// <returns></returns>
         public bool CreateRecipe(Recipe newRecipe)
         {
             try
@@ -50,9 +56,32 @@ namespace SampleApi.DAL
             }
         }
 
+        /// <summary>
+        /// Takes a recipe to delete and removes it from the database
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
         public bool DeleteRecipe(Recipe recipe)
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("DELETE FROM ingredient_recipe WHERE recipe_id = @ID" +
+                    " DELETE FROM recipe WHERE Recipe.id = @ID", conn);
+                    cmd.Parameters.AddWithValue("@ID", recipe.Id);
+
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public bool EditRecipe(Recipe oldRecipe)
