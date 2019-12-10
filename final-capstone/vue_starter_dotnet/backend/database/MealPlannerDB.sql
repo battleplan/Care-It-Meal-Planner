@@ -17,13 +17,13 @@
 	name nvarchar(64) NOT NULL,
 	author nvarchar(64) DEFAULT 'anon',
 	intructions nvarchar(max) NOT NULL,
-	vegan bit NOT NULL,
-	vegetarian bit NOT NULL,
-	gluten_free bit NOT NULL,
+	vegan bit DEFAULT 0,
+	vegetarian bit DEFAULT 0,
+	gluten_free bit DEFAULT 0,
 	cook_time_in_mins integer NOT NULL,
 	prep_time_in_mins integer NOT NULL,
-	serves integer NOT NULL,
-	difficulity nvarchar(30) NOT NULL,
+	serves integer,
+	difficulity nvarchar(30),
 	category nvarchar(20) NOT NULL,
 	CONSTRAINT pk_recipe_id PRIMARY KEY (id)
 	);
@@ -61,7 +61,7 @@
 	CREATE TABLE Account (
 	username nvarchar(64) NOT NULL,
 	password nvarchar(64) NOT NULL,
-	display_name nvarchar(64) NOT NULL,
+	display_name nvarchar(64),
 	salt varchar(50)	NOT NULL,
 	role varchar(50) default('user'),
 	CONSTRAINT pk_user_username PRIMARY KEY (username)
