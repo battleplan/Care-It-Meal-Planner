@@ -12,8 +12,6 @@
 	USE MealPlanner
 	GO
 
-	BEGIN TRAN
-
 	CREATE TABLE Recipe (
 	id integer IDENTITY NOT NULL,
 	name nvarchar(64) NOT NULL,
@@ -40,8 +38,16 @@
 	ingredient_id integer NOT NULL,
 	username nvarchar(64) NOT NULL,
 	unit_of_measurement nvarchar(15) NOT NULL,
-	quanitity integer NOT NULL,
+	quantity integer NOT NULL,
 	CONSTRAINT pk_pantry_ingredient_id_username PRIMARY KEY (ingredient_id, username)
+	);
+
+	CREATE TABLE Shopping_List (
+	ingredient_id integer NOT NULL,
+	username nvarchar(64) NOT NULL,
+	unit_of_measurement nvarchar(15) NOT NULL,
+	quantity integer NOT NULL,
+	CONSTRAINT pk_shopping_list_ingredient_id_username PRIMARY KEY (ingredient_id, username)
 	);
 
 	CREATE TABLE Meal_Plan (
@@ -56,6 +62,8 @@
 	username nvarchar(64) NOT NULL,
 	password nvarchar(64) NOT NULL,
 	display_name nvarchar(64) NOT NULL,
+	salt varchar(50)	NOT NULL,
+	role varchar(50) default('user'),
 	CONSTRAINT pk_user_username PRIMARY KEY (username)
 	);
 
@@ -69,7 +77,7 @@
 	CREATE TABLE ingredient_recipe (
 	recipe_id integer NOT NULL,
 	ingredient_id INTEGER NOT NULL,
-	quanitity numeric NOT NULL,
+	quantity numeric NOT NULL,
 	unit_of_measurement nvarchar(15),
 	CONSTRAINT pk_ingredient_id__recipe_id PRIMARY KEY (recipe_id, ingredient_id)
 	);
@@ -96,6 +104,14 @@
 	ADD FOREIGN KEY (username)
 	REFERENCES account(username);
 
+	ALTER TABLE Shopping_List
+	ADD FOREIGN KEY (ingredient_id)
+	REFERENCES ingredient(id);
+
+	ALTER TABLE Shopping_List
+	ADD FOREIGN KEY (username)
+	REFERENCES account(username);
+
 	ALTER TABLE meal_plan
 	ADD FOREIGN KEY (recipe_id)
 	REFERENCES recipe(id)
@@ -114,16 +130,11 @@
 	
 	SELECT * FROM recipe
 
-		COMMIT TRAN
-
-
-
-	BEGIN TRAN
 
 	DBCC CHECKIDENT ('recipe', RESEED, 1)
 	DBCC CHECKIDENT ('ingredient', RESEED, 1)
 
-	INSERT INTO account(username, password, display_name) VALUES ('anon', '', 'Anonymous User')
+	INSERT INTO account(username, password, display_name, salt) VALUES ('anon', '', 'Anonymous User', 'lanzlo')
 
 	INSERT INTO Ingredient(name) VALUES ('extra-virgin olive oil');
 	INSERT INTO Ingredient(name) VALUES ('diced onion');
@@ -154,24 +165,20 @@ Spread remaining 1/3 cup enchilada sauce over zucchini enchiladas. Sprinkle with
 Step 5
 Bake in the preheated oven until cheese has melted, about 20 minutes. Garnish with fresh cilantro.', 0, 0, 0, 25, 25, 4, 'Beginner', 'Mexican');
 
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (1, 1, 1, 'tablespoon');
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity) VALUES (2, 1, 1);
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity) VALUES (3, 1, 2);
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (4, 1, 2, 'teaspoon');
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (5, 1, 2, 'teaspoon');
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (6, 1, 0.5, 'teaspoon')
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (7, 1, 3, 'cups')
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (8, 1, 1.33, 'cups')
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (9, 1, 4, 'ounces')
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity) VALUES (10, 1, 4)
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (11, 1, 1, 'cup')
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quanitity, unit_of_measurement) VALUES (12, 1, 0.25, 'cup')
-
-
-	commit TRAN
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (1, 1, 1, 'tablespoon');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity) VALUES (2, 1, 1);
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity) VALUES (3, 1, 2);
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (4, 1, 2, 'teaspoon');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (5, 1, 2, 'teaspoon');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (6, 1, 0.5, 'teaspoon')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (7, 1, 3, 'cups')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (8, 1, 1.33, 'cups')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (9, 1, 4, 'ounces')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity) VALUES (10, 1, 4)
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (11, 1, 1, 'cup')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (12, 1, 0.25, 'cup')
 
 	select * from recipe
-	select * from ingredient_recipe
-	SELECT recipe.*, ingredient.*, ingredient_recipe.quanitity, ingredient_recipe.unit_of_measurement FROM recipe
+	SELECT recipe.*, ingredient.*, ingredient_recipe.quantity, ingredient_recipe.unit_of_measurement FROM recipe
 	JOIN ingredient_recipe ON recipe.id = ingredient_recipe.recipe_id
 	JOIN Ingredient ON Ingredient.id = ingredient_recipe.ingredient_id
