@@ -93,6 +93,7 @@ namespace SampleApi.DAL
         /// Gets All Recipes From Database including recipes the user hasnt added
         /// </summary>
         /// <returns></returns>
+        /// 
         public IList<Recipe> GetAllRecipes()
         {
             IList<Recipe> recipes = new List<Recipe>();
@@ -110,13 +111,21 @@ namespace SampleApi.DAL
                     while (reader.Read())
                     {
                         Recipe recipe = RowToRecipe(reader);
+                        recipes.Add(recipe);
+                    }
+                    reader.Close();
+
+                    foreach (Recipe recipe in recipes)
+                    {
+                        recipe.Ingredients = new List<Ingredient>();
+                      
 
                         SqlCommand getIng = new SqlCommand(@"
-                            SELECT ingredient.id as id, ingredient.name as ingname, ingredient_recipe.quantity as quan, ingredient_recipe.unit_of_measurement as unit FROM recipe
+                            SELECT ingredient.id as id, ingredient.name as ingname, ingredient_recipe.quanitity as quan, ingredient_recipe.unit_of_measurement as unit FROM recipe
                             JOIN ingredient_recipe ON recipe.id = ingredient_recipe.recipe_id
                             JOIN Ingredient ON Ingredient.id = ingredient_recipe.ingredient_id
                             WHERE recipe.id = @Recipe", conn);
-                        cmd.Parameters.AddWithValue("@Recipe", recipe.Id);
+                        getIng.Parameters.AddWithValue("@Recipe", recipe.Id);
 
                         SqlDataReader ingReader = getIng.ExecuteReader();
 
@@ -125,9 +134,9 @@ namespace SampleApi.DAL
                             recipe.Ingredients.Add(RowToIngredient(ingReader));
                         }
 
-                        recipes.Add(recipe);
                     }
                 }
+
             }
             catch (SqlException ex)
             {
@@ -136,9 +145,62 @@ namespace SampleApi.DAL
             return recipes;
         }
 
+
         public Recipe GetRecipeById(int id)
         {
-            throw new NotImplementedException();
+            Recipe recipe = new Recipe();
+            recipe.Ingredients = new List<Ingredient>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Recipe WHERE id=@id", conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        recipe = RowToRecipe(reader);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("select * from Ingredient i join ingredient_recipe ir on ir.ingredient_id = i.id where ir.recipe_id = @id", conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        recipe.Ingredients.Add(new Ingredient()
+                        {
+                            Id = Convert.ToInt32(reader["id"]),
+                            Name = Convert.ToString(reader["name"]),
+                            Quantity = Convert.ToInt32(reader["quanitity"]),
+                            UnitOfMeasurement = Convert.ToString(reader["unit_of_measurement"]),
+                        });
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+
+            return recipe;
         }
 
         public IList<Recipe> GetUserRecipeByCategory(string category, string username)
@@ -180,7 +242,7 @@ namespace SampleApi.DAL
                 CookTime = Convert.ToInt32(reader["cook_time_in_mins"]),
                 PrepTime = Convert.ToInt32(reader["prep_time_in_mins"]),
                 Servings = Convert.ToInt32(reader["serves"]),
-                Difficulty = Convert.ToString(reader["difficulty"]),
+                Difficulty = Convert.ToString(reader["difficulity"]),
                 Category = Convert.ToString(reader["category"]),
             };
 
