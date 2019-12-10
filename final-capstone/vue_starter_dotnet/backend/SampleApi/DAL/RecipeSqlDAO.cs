@@ -49,7 +49,7 @@ namespace SampleApi.DAL
 
                     foreach (Ingredient ingredient in newRecipe.Ingredients)
                     {
-                        SqlCommand addIng = new SqlCommand("INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (@ingId, @recId, @QN, @UM))", conn);
+                        SqlCommand addIng = new SqlCommand("INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (@ingId, @recId, @QN, @UM)", conn);
                         addIng.Parameters.AddWithValue("@ingId", ingredient.Id);
                         addIng.Parameters.AddWithValue("@recid", newRecipe.Id);
                         addIng.Parameters.AddWithValue("@QN", ingredient.Quantity);
@@ -62,7 +62,7 @@ namespace SampleApi.DAL
                     return true;
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }
@@ -145,7 +145,7 @@ namespace SampleApi.DAL
                         {
                             recipe.Ingredients.Add(RowToIngredient(ingReader));
                         }
-
+                        ingReader.Close();
                     }
                 }
 
@@ -200,7 +200,7 @@ namespace SampleApi.DAL
                         {
                             Id = Convert.ToInt32(reader["id"]),
                             Name = Convert.ToString(reader["name"]),
-                            Quantity = Convert.ToInt32(reader["quanitity"]),
+                            Quantity = Convert.ToInt32(reader["quantity"]),
                             UnitOfMeasurement = Convert.ToString(reader["unit_of_measurement"]),
                         });
                     }
