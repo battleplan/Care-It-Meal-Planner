@@ -2,10 +2,9 @@
   <div>
       <nav>
           <router-link :to="{ name: 'Recipes'}">Recipes</router-link>  |  Faves |  Recent
-          <!-- <router-link to="/categories"> </router-link> -->
           <img class="nv" src="/img/plus-sign.png">
           <img class="nv" src="/img/magnifying-glass.png">
-
+            <!-- <router-link to="/categories"> </router-link> -->
       </nav>
   </div>
 </template>
