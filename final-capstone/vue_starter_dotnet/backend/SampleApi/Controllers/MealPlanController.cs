@@ -112,5 +112,38 @@ namespace SampleApi.Controllers
 
             return NoContent();
         }
+
+        /// <summary>
+        /// API call for adding to the meal plan database
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult<MealPlan> AddToMealPlan([FromBody]MealPlan mealPlan)
+        {
+            bool worked = dao.AddToMealPlan(mealPlan);
+            if (worked)
+            {
+                return NoContent();
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// API call for deleting from the meal plan database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public ActionResult DeleteFromMealPlan([FromBody]MealPlan mealPlan)
+        {
+            bool worked = dao.RemoveFromMealPlan(mealPlan);
+            if (worked)
+            {
+                return NoContent();
+            }
+            return null;
+        }
+
     }
 }

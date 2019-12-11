@@ -15,7 +15,7 @@ namespace SampleApi.DAL
         {
             this.connectionString = connectionString;
         }
-        
+
         //DAO Methods
 
 
@@ -56,13 +56,13 @@ namespace SampleApi.DAL
                         addIng.Parameters.AddWithValue("@UM", ingredient.UnitOfMeasurement);
 
                         addIng.ExecuteNonQuery();
-                    
+
                     }
 
                     return true;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -174,7 +174,7 @@ namespace SampleApi.DAL
                     foreach (Recipe recipe in recipes)
                     {
                         recipe.Ingredients = new List<Ingredient>();
-                      
+
 
                         SqlCommand getIng = new SqlCommand(@"
                             SELECT ingredient.id as id, ingredient.name as ingname, ingredient_recipe.quantity as quan, ingredient_recipe.unit_of_measurement as unit FROM recipe
@@ -319,5 +319,64 @@ namespace SampleApi.DAL
             };
         }
 
+        private MealPlan RowToMealPlan(SqlDataReader reader)
+        {
+            return new MealPlan()
+            {
+                RecipeID = Convert.ToInt32(reader["recipe_id"]),
+                Username = Convert.ToString(reader["username"]),
+                MealSlot = Convert.ToInt32(reader["meal_slot"]),
+                MealDate = Convert.ToDateTime(reader["meal_date"]),
+            };
+
+        }
+
+        public bool AddToMealPlan(MealPlan mealPlan)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand addRec = new SqlCommand("INSERT INTO Meal_Plan(recipe_id, username, meal_slot, meal_date)" +
+                        " VALUES (@recipeId, @username, @mealSlot, @mealDate); SELECT @@IDENTITY", conn);
+                    addRec.Parameters.AddWithValue("@recipeId", mealPlan.Recipe.Id);
+                    addRec.Parameters.AddWithValue("@username", mealPlan.User.Username);
+                    addRec.Parameters.AddWithValue("@mealSlot", mealPlan.MealSlot);
+                    addRec.Parameters.AddWithValue("@mealDate", mealPlan.MealDate);
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool RemoveFromMealPlan(MealPlan mealPlan)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("DELETE FROM Meal_Plan WHERE recipe_id = @recipeId AND username = @username AND meal_slot = @mealSlot", conn);
+                    cmd.Parameters.AddWithValue("@recipeId", mealPlan.Recipe.Id);
+                    cmd.Parameters.AddWithValue("@username", mealPlan.User.Username);
+                    cmd.Parameters.AddWithValue("@mealSlot", mealPlan.MealSlot);
+
+                    cmd.ExecuteNonQuery();
+
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

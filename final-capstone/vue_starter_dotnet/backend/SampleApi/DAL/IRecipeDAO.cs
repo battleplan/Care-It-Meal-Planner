@@ -27,5 +27,9 @@ namespace SampleApi.DAL
         bool EditRecipe(Recipe recipe);
 
         bool DeleteRecipe(Recipe recipe);
+
+        bool AddToMealPlan(MealPlan mealPlan);
+
+        bool RemoveFromMealPlan(MealPlan mealPlan);
     }
 }
