@@ -4,6 +4,7 @@ import auth from './auth'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 import Register from './views/Register.vue'
+import Recipe from './views/Recipe.vue'
 
 Vue.use(Router)
 
@@ -42,6 +43,14 @@ const router = new Router({
       component: Register,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/detail/:id",
+      name: "recipe",
+      component: Recipe,
+      meta: {
+        requiresAuth: true
       }
     },
   ]
