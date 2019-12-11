@@ -59,6 +59,7 @@
 	);
 
 	CREATE TABLE Account (
+	id integer IDENTITY,
 	username nvarchar(64) NOT NULL,
 	password nvarchar(64) NOT NULL,
 	display_name nvarchar(64),
@@ -184,3 +185,4 @@ INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measu
 	JOIN Ingredient ON Ingredient.id = ingredient_recipe.ingredient_id
 
 
+	select * from account

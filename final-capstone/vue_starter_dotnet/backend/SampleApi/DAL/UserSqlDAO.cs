@@ -34,7 +34,7 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO users VALUES (@username, @password, @salt, @role);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO account (username, password, salt, role) VALUES (@username, @password, @salt, @role);", conn);
                     cmd.Parameters.AddWithValue("@username", user.Username);
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
@@ -62,7 +62,7 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @id;", conn);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM account WHERE id = @id;", conn);
                     cmd.Parameters.AddWithValue("@id", user.Id);                    
 
                     cmd.ExecuteNonQuery();
@@ -89,7 +89,7 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM USERS WHERE username = @username;", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM account WHERE username = @username;", conn);
                     cmd.Parameters.AddWithValue("@username", username);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -119,7 +119,7 @@ namespace SampleApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("UPDATE users SET password = @password, salt = @salt, role = @role WHERE id = @id;", conn);                    
+                    SqlCommand cmd = new SqlCommand("UPDATE account SET password = @password, salt = @salt, role = @role WHERE id = @id;", conn);                    
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
                     cmd.Parameters.AddWithValue("@role", user.Role);
