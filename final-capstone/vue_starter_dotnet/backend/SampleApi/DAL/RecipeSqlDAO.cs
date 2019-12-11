@@ -304,7 +304,7 @@ namespace SampleApi.DAL
                     SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM ingredient WHERE name = @name", conn);
                     cmd.Parameters.AddWithValue("@name", ing.Name);
 
-                    if(Convert.ToInt32(cmd.ExecuteScalar()) > 1)
+                    if(Convert.ToInt32(cmd.ExecuteScalar()) > 0)
                     {
                         return false;
                     }
