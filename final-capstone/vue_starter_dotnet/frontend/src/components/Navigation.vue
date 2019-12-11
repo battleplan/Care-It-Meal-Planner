@@ -1,7 +1,7 @@
 <template>
   <div>
       <nav>
-          <router-link :to="{ name: 'Recipes'}">Recipes</router-link>  |  Faves |  Recent
+          <router-link :to="{ name: 'AddRecipe'}">Add Recipe</router-link>  |  Faves |  Recent
           <img class="nv" src="/img/plus-sign.png">
           <img class="nv" src="/img/magnifying-glass.png">
             <!-- <router-link to="/categories"> </router-link> -->

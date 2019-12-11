@@ -179,6 +179,42 @@ INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity) VALUES (10, 1
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (11, 1, 1, 'cup')
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (12, 1, 0.25, 'cup')
 
+-- Recipe #2   https://www.food.com/recipe/jo-mamas-world-famous-spaghetti-22782
+
+    INSERT INTO Ingredient(name) VALUES ('diced tomatoes');
+	INSERT INTO Ingredient(name) VALUES ('tomato paste');
+	INSERT INTO Ingredient(name) VALUES ('tomato sauce');
+	INSERT INTO Ingredient(name) VALUES ('dried basil');
+	INSERT INTO Ingredient(name) VALUES ('dried parsley');
+	INSERT INTO Ingredient(name) VALUES ('brown sugar');	
+	INSERT INTO Ingredient(name) VALUES ('crushed red pepper flakes');
+	INSERT INTO Ingredient(name) VALUES ('thin spaghetti');
+	INSERT INTO Ingredient(name) VALUES ('italian sausage');
+
+
+
+	INSERT INTO recipe(name,  instructions, vegan, vegetarian, gluten_free, cook_time_in_mins, prep_time_in_mins, serves, difficulty, category) VALUES ('Jo Mamas World Famous Spaghetti',  
+'In large, heavy stockpot, brown Italian sausage, breaking up as you stir.
+    Add onions and continue to cook, stirring occasionally until onions are softened.
+    Add garlic, tomatoes, tomato paste, tomato sauce and water.
+    Add basil, parsley, brown sugar, salt, crushed red pepper, and black pepper.
+    Stir well and barely bring to a boil.
+    Stir in red wine.
+    Simmer on low, stirring frequently for at least an hour. A longer simmer makes for a better sauce, just be careful not to let it burn!
+    Cook spaghetti according to package directions.
+    Spoon sauce over drained spaghetti noodles and sprinkle with parmesan cheese.', 0, 0, 0, 60,80, 10, 'Beginner', 'Italian');
+
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'diced tomatoes'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 28, 'ounces');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'tomato paste'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 12, 'ounces');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'tomato sauce'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 30, 'ounces');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'dried basil'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 3, 'teaspoons');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'dried parsley'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 2, 'teaspoons');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'brown sugar'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 1.5, 'teaspoons');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'crushed red pepper flakes'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 0.25, 'teaspoons');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'thin spaghetti'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 1, 'pound');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'italian sausage'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 2, 'pounds');
+
+
 	select * from recipe
 	SELECT recipe.*, ingredient.*, ingredient_recipe.quantity, ingredient_recipe.unit_of_measurement FROM recipe
 	JOIN ingredient_recipe ON recipe.id = ingredient_recipe.recipe_id
