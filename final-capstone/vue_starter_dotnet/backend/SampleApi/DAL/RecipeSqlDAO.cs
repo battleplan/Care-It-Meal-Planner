@@ -287,6 +287,40 @@ namespace SampleApi.DAL
         {
             throw new NotImplementedException();
         }
+        /// <summary>
+        /// Adds the ingredient to the database if one with the same one is not already there
+        /// </summary>
+        /// <param name="ing">The ingredient to be created</param>
+        /// <returns></returns>
+        public bool CreateIngredient(Ingredient ing)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    //I wanna check if the ingredient already exists before I add it, but the only way i can think to do that is to just search for an ingredient with the same name
+
+                    SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM ingredient WHERE name = @name", conn);
+                    cmd.Parameters.AddWithValue("@name", ing.Name);
+
+                    if(Convert.ToInt32(cmd.ExecuteScalar()) > 1)
+                    {
+                        return false;
+                    }
+                    cmd = new SqlCommand("INSERT INTO ingredient (name) VALUES (@name)", conn);
+                    cmd.Parameters.AddWithValue("@name", ing.Name);
+
+                    ing.Id = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    return true;
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
 
         private Recipe RowToRecipe(SqlDataReader reader)
         {

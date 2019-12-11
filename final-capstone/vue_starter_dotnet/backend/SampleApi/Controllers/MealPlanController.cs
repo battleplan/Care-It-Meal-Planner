@@ -116,7 +116,7 @@ namespace SampleApi.Controllers
         /// <summary>
         /// API call for adding to the meal plan database
         /// </summary>
-        /// <param name="recipe"></param>
+        /// <param name="mealPlan"></param>
         /// <returns></returns>
         [HttpPost]
         public ActionResult<MealPlan> AddToMealPlan([FromBody]MealPlan mealPlan)
