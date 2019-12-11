@@ -111,6 +111,7 @@ namespace SampleApi.DAL
 
                     //Delete old recipe ingredients
                     SqlCommand cmd = new SqlCommand("DELETE FROM ingredient_recipe where recipe_id = @recId", conn);
+                    cmd.Parameters.AddWithValue("@recId", recipe.Id);
 
                     cmd.ExecuteNonQuery();
 
@@ -131,6 +132,8 @@ namespace SampleApi.DAL
                     upd.Parameters.AddWithValue("@Name", recipe.Name);
                     upd.Parameters.AddWithValue("@intruc", recipe.Instructions);
                     upd.Parameters.AddWithValue("@id", recipe.Id);
+
+                    upd.ExecuteNonQuery();
 
                     return true;
                 }
@@ -197,7 +200,11 @@ namespace SampleApi.DAL
             return recipes;
         }
 
-
+        /// <summary>
+        /// Gets a single recipe from the database by its ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Recipe GetRecipeById(int id)
         {
             Recipe recipe = new Recipe();

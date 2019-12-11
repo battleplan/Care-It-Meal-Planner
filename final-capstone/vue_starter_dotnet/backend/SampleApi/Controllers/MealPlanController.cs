@@ -88,6 +88,29 @@ namespace SampleApi.Controllers
             return NoContent();
         }
 
-        //TODO Modify recipes
+        /// <summary>
+        /// Modifies a recipe in the database
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <param name="updatedRecipe"></param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        public ActionResult ModifyRecipe(Recipe recipe, [FromBody]Recipe updatedRecipe)
+        {
+            Recipe existingItem = dao.GetRecipeById(recipe.Id);
+
+            if (existingItem == null)
+            {
+                return NotFound();
+            }
+
+            existingItem.Name = updatedRecipe.Name;
+            existingItem.Instructions = updatedRecipe.Instructions;
+            existingItem.Ingredients = updatedRecipe.Ingredients;
+
+            dao.EditRecipe(existingItem);
+
+            return NoContent();
+        }
     }
 }
