@@ -116,6 +116,7 @@ namespace SampleApi.DAL
                     cmd.ExecuteNonQuery();
 
                     // add new ingredients to the old recipe
+                    //NOTE: Ingredient needs to exist in the database to function
                     foreach (Ingredient ingredient in recipe.Ingredients)
                     {
                         SqlCommand addIng = new SqlCommand("INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (@ingId, @recId, @QN, @UM)", conn);
@@ -128,9 +129,9 @@ namespace SampleApi.DAL
                     }
 
                     //updates name and intructions
-                    SqlCommand upd = new SqlCommand("UPDATE recipe SET name = @Name, instructions = @instruc, WHERE id = @id", conn);
+                    SqlCommand upd = new SqlCommand("UPDATE recipe SET name = @Name, instructions = @instruc WHERE id = @id", conn);
                     upd.Parameters.AddWithValue("@Name", recipe.Name);
-                    upd.Parameters.AddWithValue("@intruc", recipe.Instructions);
+                    upd.Parameters.AddWithValue("@instruc", recipe.Instructions);
                     upd.Parameters.AddWithValue("@id", recipe.Id);
 
                     upd.ExecuteNonQuery();
@@ -138,9 +139,9 @@ namespace SampleApi.DAL
                     return true;
                 }
             }
-            catch
+            catch (SqlException ex)
             {
-                return false;
+                throw ex;
             }
         }
 
