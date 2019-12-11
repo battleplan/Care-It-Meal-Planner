@@ -1,36 +1,33 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <nav class="dropdownmenu">
+    <div id="nv">
+    <nav class="dropdownmenu">
   <ul>
-    <li><router-link to="/">Home</router-link></li>
-    <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">My Recipes</a></li>
-    <li><a href="#">Shopping List</a>
+    <li><a href="http://www.jochaho.com/wordpress/">Home</a></li>
+    <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">About Me</a></li>
+    <li><a href="#">Articles on HTML5 & CSS3</a>
       <ul id="submenu">
         <li><a href="http://www.jochaho.com/wordpress/difference-between-svg-vs-canvas/">Difference between SVG vs. Canvas</a></li>
         <li><a href="http://www.jochaho.com/wordpress/new-features-in-html5/">New features in HTML5</a></li>
         <li><a href="http://www.jochaho.com/wordpress/creating-links-to-sections-within-a-webpage/">Creating links to sections within a webpage</a></li>
       </ul>
     </li>
-    <li><a href="http://www.jochaho.com/wordpress/category/news/">Pantry</a></li>
-    
-    
+    <li><a href="http://www.jochaho.com/wordpress/category/news/">News</a></li>
+    <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">Contact Us</a></li>
   </ul>
 </nav>
-    </div>
-    <router-view/>
-  </div>
+</div>
 </template>
 
 <script>
-export default {
-  
-}
+    
+   
 </script>
-import Login from ''
-<style scoped>
 
-.dropdownmenu ul, .dropdownmenu li {
+<style>
+#nv {
+    background: #fba919;
+}
+  .dropdownmenu ul, .dropdownmenu li {
 	margin: 0;
 	padding: 0;
 }
@@ -42,7 +39,7 @@ import Login from ''
 .dropdownmenu li {
 	float: left;
 	position: relative;
-	width:25%;
+	width:auto;
 }
 .dropdownmenu a {
 	background: #fba919;

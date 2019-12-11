@@ -8,6 +8,7 @@
 <!--     <search-bar></search-bar>
     <card-slider></card-slider>
     <navigation></navigation> -->
+    <navie></navie>
   </div>
 </template>
 
@@ -15,7 +16,7 @@
 /* import Navigation from './components/Navigation.vue'
 import CardSlider from './components/CardSlider.vue'
 import SearchBar from './components/SearchBar.vue' */
-
+import Navie from './components/Navie.vue'
 
 export default {
   name: 'app',
@@ -23,6 +24,7 @@ export default {
 /*      Navigation,
     CardSlider,
     SearchBar */
+    Navie
   }
 }
 </script>
