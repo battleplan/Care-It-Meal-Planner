@@ -1,42 +1,39 @@
 <template>
-<div>
- <!--    [
-  {
-    "fieldType": "TextInput",
-    "isUnique": false,
-    "isPlaceholderVisible": false,
-    "placeholder": "Input your text here...",
-    "label": "Recipe Name",
-    "isHelpBlockVisible": false,
-    "helpBlockText": "Please input your helpblock here...",
-    "isRequired": true
-  },
-  {
-    "fieldType": "Checkbox",
-    "isUnique": false,
-    "label": "Options",
-    "isHelpBlockVisible": false,
-    "helpBlockText": "Please input your helpblock here...",
-    "isRequired": false,
-    "options": [
-      {
-        "optionLabel": "Option 1",
-        "optionValue": "Vegan?"
-      },
-      {
-        "optionLabel": "Option 2",
-        "optionValue": "Vegetarian?"
-      },
-      {
-        "optionLabel": "Option 3",
-        "optionValue": "Gluten-Free?"
-      }
-    ]
-  }
-] -->
-</div>
+  <div class="panel-body">
+    <vue-form-generator :schema="schema" :model="model" :options="formOptions"></vue-form-generator>
+  </div>
 </template>
 
 <script>
+  //import VueFormGenerator from "vue-form-generator";
 
+export default {
+  data () {
+    return {
+      model: {
+      },
+      schema: {
+        fields: [
+          {
+            type: 'input',
+            inputType: 'text',
+            label: 'Recipe Name',
+            model: 'id',
+            readonly: true,
+            disabled: true
+          }
+        ]
+      },
+      formOptions: {
+        validateAfterLoad: true,
+        validateAfterChanged: true,
+        validateAsync: true
+      }
+    }
+  }
+}
 </script>
+
+<style scoped>
+
+</style>

@@ -60,7 +60,7 @@ const router = new Router({
       name: "addrecipe",
       component: AddRecipe,
       meta: {
-        requiresAuth: true
+        requiresAuth: false
       }
     },
   ]
