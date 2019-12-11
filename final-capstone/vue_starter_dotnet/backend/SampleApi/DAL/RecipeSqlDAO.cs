@@ -323,8 +323,9 @@ namespace SampleApi.DAL
         {
             return new MealPlan()
             {
-                RecipeID = Convert.ToInt32(reader["recipe_id"]),
-                Username = Convert.ToString(reader["username"]),
+                // TODO Fix property mapping
+                //Recipe = Convert.ToInt32(reader["recipe_id"]),
+                //Username = Convert.ToString(reader["username"]),
                 MealSlot = Convert.ToInt32(reader["meal_slot"]),
                 MealDate = Convert.ToDateTime(reader["meal_date"]),
             };
