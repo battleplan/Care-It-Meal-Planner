@@ -347,7 +347,7 @@ namespace SampleApi.DAL
             return new Ingredient()
             {
                 Id = Convert.ToInt32(ingReader["id"]),
-                Name = Convert.ToString(ingReader["name"]),
+                Name = Convert.ToString(ingReader["ingname"]),
             };
         }
 
