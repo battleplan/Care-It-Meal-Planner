@@ -347,9 +347,7 @@ namespace SampleApi.DAL
             return new Ingredient()
             {
                 Id = Convert.ToInt32(ingReader["id"]),
-                Name = Convert.ToString(ingReader["ingname"]),
-                Quantity = Convert.ToDouble(ingReader["quan"]),
-                UnitOfMeasurement = ingReader["unit"] == null ? "" : Convert.ToString(ingReader["unit"])
+                Name = Convert.ToString(ingReader["name"]),
             };
         }
 
@@ -412,6 +410,35 @@ namespace SampleApi.DAL
             {
                 return false;
             }
+        }
+
+        public IList<Ingredient> GetAllIngredients()
+        {
+            IList<Ingredient> ingredients = new List<Ingredient>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM ingredient", conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Ingredient ingredient = RowToIngredient(reader);
+                        ingredients.Add(ingredient);
+                    }
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            return ingredients;
         }
     }
 }

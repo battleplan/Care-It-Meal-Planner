@@ -10,6 +10,8 @@ namespace SampleApi.DAL
     {
         IList<Recipe> GetAllRecipes();
 
+        IList<Ingredient> GetAllIngredients();
+
         Recipe GetRecipeById(int id);
 
         IList<Recipe> GetUserRecipes(string username, bool isFavorite);

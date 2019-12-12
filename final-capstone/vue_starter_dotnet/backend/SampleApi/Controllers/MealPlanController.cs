@@ -32,10 +32,22 @@ namespace SampleApi.Controllers
         [HttpGet]
         public ActionResult<IList<Recipe>> GetAll()
         {
-            IList<Recipe> reviews = dao.GetAllRecipes();
+            IList<Recipe> recipes = dao.GetAllRecipes();
 
             // Return 200 OK
-            return Ok(reviews);
+            return Ok(recipes);
+        }
+        /// <summary>
+        /// API call for getting ALL the ingredients
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public ActionResult<IList<Ingredient>> GetIngredients()
+        {
+            IList<Ingredient> ingredients = dao.GetAllIngredients();
+
+            // Return 200 OK
+            return Ok(ingredients);
         }
         /// <summary>
         /// API call for getting a scpecific recipe
