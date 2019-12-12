@@ -59,7 +59,7 @@ import Login from ''
 	transition: all .25s ease;
 }
 .dropdownmenu li:hover a {
-	background: #000000;
+	background: #c35e00;
 }
 #submenu {
 	left: 0;
@@ -79,9 +79,9 @@ li:hover ul#submenu {
 	width: 100%;
 }
 #submenu a:hover {
-	background: #DF4B05;
+	background: #ff0000;
 }
 #submenu a {
-	background-color:#000000;
+	background-color:#c35e00;
 }
 </style>
