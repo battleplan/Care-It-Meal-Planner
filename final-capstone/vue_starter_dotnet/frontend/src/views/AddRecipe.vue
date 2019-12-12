@@ -2,7 +2,7 @@
   
 
 <div id="formadd" class="container">
-  <form>
+  <form @submit.prevent="addrecipe">
     <ul class="flex-outer">
       <li>
         <label for="name">Recipe Name</label>
@@ -59,36 +59,50 @@ export default {
   data () {
     return {
       recipe: {
-      name: '',
-      instructions: '',
-      vegan: false,
+      name: 'Form Test Recipe',
+      instructions: '1. Make Food - 2. Eat Food',
+      vegan: true,
       vegetarian: false,
       glutenfree: false,
-      cooktime: 0,
-      preptime: 0,
-      servings: 0,
-      difficulty: '',
-      category: ''
+      cooktime: 30,
+      preptime: 40,
+      servings: 10,
+      difficulty: 'Super Easy',
+      category: 'American',
+      ingredients:[{id: 99, name: 'testIngredient1'}, {id: 100, name: 'testIngredient2'}]
       },
-/*       schema: {
-        fields: [
-          {
-            type: 'input',
-            inputType: 'text',
-            label: 'Recipe Name',
-            model: 'id',
-            readonly: true,
-            disabled: true
+    }
+  },
+  methods: {
+    addrecipe() {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/meal`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.recipe),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.text();
+          } else {
+            this.invalidCredentials = true;
           }
-        ]
-      },
-      formOptions: {
-        validateAfterLoad: true,
-        validateAfterChanged: true,
-        validateAsync: true
-      }
- */    }
-  }
+        })
+        .then((token) => {
+          if (token != undefined) {
+            if (token.includes('"')) {
+              token = token.replace(/"/g, '');
+            }
+            auth.saveToken(token);
+            this.$router.push('/');
+          }
+        })
+        .catch((err) => console.error(err));
+    },
+  },
+
 }
 </script>
 
