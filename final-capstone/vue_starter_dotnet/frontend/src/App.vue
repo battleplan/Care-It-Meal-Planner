@@ -4,15 +4,19 @@
       <nav class="dropdownmenu">
   <ul>
     <li><router-link to="/">Home</router-link></li>
-    <li><a href="http://www.jochaho.com/wordpress/about-pritesh-badge/">My Recipes</a></li>
+    <li><a href="#">My Recipes</a>
+	  <ul id="submenu">
+        <li><a href="/addrecipe">Add Recipe (WIP)</a></li>
+      </ul>
+
+	</li>
     <li><a href="#">Shopping List</a>
       <ul id="submenu">
-        <li><a href="http://www.jochaho.com/wordpress/difference-between-svg-vs-canvas/">Difference between SVG vs. Canvas</a></li>
-        <li><a href="http://www.jochaho.com/wordpress/new-features-in-html5/">New features in HTML5</a></li>
-        <li><a href="http://www.jochaho.com/wordpress/creating-links-to-sections-within-a-webpage/">Creating links to sections within a webpage</a></li>
+        <li><a href="#">Placeholder</a></li>
+        <li><a href="#">Placeholder</a></li>
       </ul>
     </li>
-    <li><a href="http://www.jochaho.com/wordpress/category/news/">Pantry</a></li>
+    <li><a href="#">Pantry</a></li>
     
     
   </ul>
