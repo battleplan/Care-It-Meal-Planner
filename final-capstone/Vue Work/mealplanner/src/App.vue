@@ -1,14 +1,16 @@
 <template>
-  <div id="app">
+<div>
+  <!-- <div id="app">
     <div id="nav">
       <router-link to="/">Main</router-link>
       <router-link to="/recipes">Recipes</router-link>
     </div>
-    <router-view />
+    <router-view /> -->
 <!--     <search-bar></search-bar>
     <card-slider></card-slider>
-    <navigation></navigation> -->
-    <login-box></login-box>
+    <navigation></navigation> 
+    <login-box></login-box> -->
+    <poster></poster>
   </div>
 </template>
 
@@ -16,15 +18,18 @@
 /* import Navigation from './components/Navigation.vue'
 import CardSlider from './components/CardSlider.vue'
 import SearchBar from './components/SearchBar.vue' */
-
-import LoginBox from './components/LoginBox.vue'
+//import Detail from './components/Detail.vue'
+import Poster from './components/Poster.vue'
+//import LoginBox from './components/LoginBox.vue'
 export default {
   name: 'app',
   components: {
 /*      Navigation,
     CardSlider,
     SearchBar */
-    LoginBox
+    //LoginBox
+   // Detail
+   Poster
   }
 }
 </script>
