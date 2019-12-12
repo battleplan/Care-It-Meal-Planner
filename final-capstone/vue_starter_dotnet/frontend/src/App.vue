@@ -5,9 +5,9 @@
   <ul>
     <li><router-link to="/">Home</router-link></li>
     <li><a href="#">My Recipes</a>
-	  <ul id="submenu">
+		<ul id="submenu">
         <li><a href="/addrecipe">Add Recipe (WIP)</a></li>
-      </ul>
+    </ul>
 
 	</li>
     <li><a href="#">Shopping List</a>

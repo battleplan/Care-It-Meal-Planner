@@ -1,14 +1,14 @@
 <template>
 <section id="login" v-bind:class="isShake">
- <form>
+ <form v-on:submit.prevent="newLogin">
   <h2>Login</h2>
   <div v-if="alert.message" class="info" v-bind:class="good">
    <p>{{ alert.message }}</p>
-   <p v-show="login.login && login.password">{{ login.login}} / {{ login.password}}</p>
+   <p v-show="login.username && login.password">{{ login.username}} / {{ login.password}}</p>
   </div>
-  <input type="text" v-model="login.login" placeholder="Username" />
+  <input type="text" v-model="login.username" placeholder="Username" />
   <input type="password" v-model="login.password" placeholder="Password" />
-  <button v-on:click="onSubmit">Log in</button>
+  <button >Log in</button>
  </form>
 </section>
 </template>
@@ -17,14 +17,20 @@
 export default {
 	
 	name: "login-box",
+	// prop:{
+	// 	login2: {
+	// 		username: String,
+	// 		password: String
+	// 	},
+	// },
 	data() {
         return{
 		alert: {
 			message: ""
 		},
 		login: {
-			login: "",
-			password: ""
+			username: '',
+			password: ''
 		},
 		shake: false,
 		good: "",
@@ -60,6 +66,9 @@ export default {
 			},3000)
 			//console.log(this.shake)
 			
+		},
+		newLogin: function(){
+			this.$emit('new-login', this.login)
 		}
 	}
 }
