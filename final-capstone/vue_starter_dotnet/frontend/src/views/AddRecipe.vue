@@ -6,39 +6,39 @@
     <ul class="flex-outer">
       <li>
         <label for="name">Recipe Name</label>
-        <input type="text" id="name" placeholder="Enter your recipe name here">
+        <input type="text" id="name" v-model="recipe.name" placeholder="Enter your recipe name here">
       </li>
       <li>
         <label for="instructions">Instructions:</label>
-        <input type="textarea" id="instructions" placeholder="How do you make the recipe?">
+        <input type="textarea" id="instructions" v-model="recipe.instructions" placeholder="How do you make the recipe?">
       </li>
       <li>
         <label for="cooktime">Cook Time</label>
-        <input type="number" id="cooktime" placeholder="Cook Time">
+        <input type="number" id="cooktime" v-model="recipe.cooktime" placeholder="Cook Time">
       
         <label for="preptime">Prep Time </label>
-        <input type="number" id="preptime" placeholder="Prep Time">
+        <input type="number" id="preptime" v-model="recipe.preptime" placeholder="Prep Time">
       </li>
       <li>
         <label for="servings">Servings</label>
-        <input type="number" id="servings" placeholder="Servings">
+        <input type="number" id="servings" v-model="recipe.servings" placeholder="Servings">
 
         <label for="category">Category</label>
-        <input type="text" id="category" placeholder="i.e.  American, Italian, Mexican">
+        <input type="text" id="category" v-model="recipe.category" placeholder="i.e.  American, Italian, Mexican">
       </li>
       <li>
         
         <ul class="flex-inner">
           <li>
-            <input type="checkbox" id="vegan">
+            <input type="checkbox" id="vegan" v-model="recipe.vegan">
             <label for="vegan">Vegan?</label>
           </li>
           <li>
-            <input type="checkbox" id="vegetarian">
+            <input type="checkbox" id="vegetarian" v-model="recipe.vegetarian">
             <label for="vegetarian">Vegetarian?</label>
           </li>
           <li>
-            <input type="checkbox" id="glutenfree">
+            <input type="checkbox" id="glutenfree" v-model="recipe.glutenfree">
             <label for="glutenfree">GF?</label>
           </li>
         </ul>
@@ -58,9 +58,19 @@
 export default {
   data () {
     return {
-      model: {
+      recipe: {
+      name: '',
+      instructions: '',
+      vegan: false,
+      vegetarian: false,
+      glutenfree: false,
+      cooktime: 0,
+      preptime: 0,
+      servings: 0,
+      difficulty: '',
+      category: ''
       },
-      schema: {
+/*       schema: {
         fields: [
           {
             type: 'input',
@@ -77,7 +87,7 @@ export default {
         validateAfterChanged: true,
         validateAsync: true
       }
-    }
+ */    }
   }
 }
 </script>
