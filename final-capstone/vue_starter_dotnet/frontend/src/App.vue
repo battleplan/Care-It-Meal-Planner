@@ -4,19 +4,18 @@
       <nav class="dropdownmenu">
   <ul>
     <li><router-link to="/">Home</router-link></li>
-    <li><a href="#">My Recipes</a>
+    <li><a href="/">My Recipes</a>
 		<ul id="submenu">
         <li><a href="/addrecipe">Add Recipe (WIP)</a></li>
     </ul>
 
 	</li>
-    <li><a href="#">Shopping List</a>
+    <li><a href="/calendar">Meal Planner (WIP)</a>
       <ul id="submenu">
-        <li><a href="#">Placeholder</a></li>
-        <li><a href="#">Placeholder</a></li>
+        <li><a href="/test">Testing Vue</a></li>
       </ul>
     </li>
-    <li><a href="#">Pantry</a></li>
+    <li><a href="/">Pantry</a></li>
     
     
   </ul>

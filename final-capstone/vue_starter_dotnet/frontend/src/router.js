@@ -6,6 +6,9 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Recipe from './views/Recipe.vue'
 import AddRecipe from './views/AddRecipe.vue'
+import Calendar from './views/Calendar.vue'
+import Test from './views/Test.vue'
+
 
 
 Vue.use(Router)
@@ -63,6 +66,23 @@ const router = new Router({
         requiresAuth: false
       }
     },
+    {
+      path: "/calendar",
+      name: "calendar",
+      component: Calendar,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/test",
+      name: "test",
+      component: Test,
+      meta: {
+        requiresAuth: false
+      }
+    },
+
   ]
 })
 
