@@ -2,30 +2,33 @@
 <template id="tpl-movie-data">
     <div class="movie__data">
         <div class="movie__poster" v-if="!error"><span class="movie__poster--fill">
-                <transition name="fade"><img src="@/components/mac.jpg" /></transition>
+                <transition name="fade"><img src="../../public/mac.jpg" /></transition>
             </span><span class="movie__poster--featured">
-                <transition name="fade"><img src="@/components/mac.jpg" /></transition>
+                <transition name="fade"><img src="../../public/mac.jpg" /></transition>
             </span></div>
         <div class="movie__details" v-if="!error">
-            <h2 class="movie__title">Tacos</h2>
+            <h2 class="movie__title">{{recipe.name}}</h2>
             <ul class="movie__tags list--inline">
-                <li class="movie__rated">category</li>
-                <li class="movie__year">cook time</li>
-                <li class="movie__genre">gluten free</li>
+                <li class="movie__rated">{{recipe.category}}</li>
+                <li class="movie__year">{{recipe.cookTime + recipe.prepTime}} mins</li>
+                <li class="movie__genre">{{recipe.difficulty}}</li>
             </ul>
-            <p class="movie__plot">Instructions: ygeuyfgyigaiufhfuihgfuigaheruo;fhouadrdhguo;haer;oughg;ouadrhgfuo;har;uoghuo;aryuyyiudhyf;uihadu;fdfha;uyhfu</p>
+            <p class="movie__plot">Instructions: {{recipe.instructions}}</p>
             <div class="movie__credits">
-                <p><strong>Written by:</strong> Josh</p>
-                <p><strong>Directed by:</strong> Will</p>
-                <p><strong>Starring:</strong>Ron</p>
+                <p><strong>Written by:</strong> {{recipe.author}}</p>
+                <ul>Ingredients
+                  <li v-for="ing in recipe.ingredients" v-bind:key="ing.id">{{ing.quantity}} {{ing.unitOfMeasurement}} {{ing.name}}</li>
+                </ul>
+
+                <p><strong>Serves:</strong> {{recipe.servings}}</p>
                 <ul class="movie__actors list--inline">
                    <!--  <li v-for="actor in movie.Actors">{{actor}}</li> -->
                 </ul>
             </div>
         </div>
-        <div class="movie__error" v-show="error">
+        <!-- <div class="movie__error" v-show="error">
             <h2>watevs</h2>
-        </div>
+        </div> -->
     </div>
 
 </template>
@@ -33,6 +36,9 @@
 <script>
 export default {
     name: "poster",
+    props:{
+      recipe: Object,
+    }
 }
 </script>
 
@@ -117,7 +123,7 @@ input {
 
 .movie {
     &__plot {
-        width: 50%;
+        width: 70%;
         // height: 20px;
     }
   &__data {

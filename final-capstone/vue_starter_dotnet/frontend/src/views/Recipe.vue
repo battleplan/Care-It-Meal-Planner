@@ -1,20 +1,25 @@
 <template>
     <div class="recipe-detail">
-        <h1>Recipe Detail</h1>
+        <!-- <h1>Recipe Detail</h1>
         
         <pre>
             {{ recipe }}
-        </pre>
+        </pre> -->
+        <poster v-bind:recipe="this.recipe"></poster>
     </div>
 </template>
 
 <script>
     import axios from 'axios';
+    import Poster from '../components/Poster.vue';
 
     export default {
         name: 'recipe-detail',
         prop:{
             id: 1,
+        },
+        components:{
+            Poster
         },
         data() {
             return {
