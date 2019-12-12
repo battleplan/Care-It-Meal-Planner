@@ -8,7 +8,7 @@
 <!--     <search-bar></search-bar>
     <card-slider></card-slider>
     <navigation></navigation> -->
-    <navie></navie>
+    <login-box></login-box>
   </div>
 </template>
 
@@ -16,15 +16,15 @@
 /* import Navigation from './components/Navigation.vue'
 import CardSlider from './components/CardSlider.vue'
 import SearchBar from './components/SearchBar.vue' */
-import Navie from './components/Navie.vue'
 
+import LoginBox from './components/LoginBox.vue'
 export default {
   name: 'app',
   components: {
 /*      Navigation,
     CardSlider,
     SearchBar */
-    Navie
+    LoginBox
   }
 }
 </script>
