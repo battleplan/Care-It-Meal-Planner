@@ -41,7 +41,7 @@ namespace SampleApi.Controllers
         /// API call for getting ALL the ingredients
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
+        [HttpGet("api/ingredients", Name = "Ingredients")]
         public ActionResult<IList<Ingredient>> GetIngredients()
         {
             IList<Ingredient> ingredients = dao.GetAllIngredients();
