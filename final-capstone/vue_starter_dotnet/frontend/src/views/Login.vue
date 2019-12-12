@@ -1,6 +1,6 @@
 <template>
   <div id="login" class="text-center">
-    <form class="form-signin" @submit.prevent="login">
+    <!-- <form class="form-signin" @submit.prevent="login">
 <div id="greeting">
       <h1 id="h3 mb-3 font-weight-normal">Please Sign In</h1>
 </div>
@@ -39,16 +39,17 @@
       <button type="submit">Sign in</button>
       </div>
       </div>
-    </form>
+    </form> -->
+    <login-box v-on:new-login="dealWithIt"></login-box>
   </div>
 </template>
 
 <script>
 import auth from '../auth';
+import LoginBox from '../components/LoginBox.vue';
 
 export default {
   name: 'login',
-  components: {},
   data() {
     return {
       user: {
@@ -57,6 +58,9 @@ export default {
       },
       invalidCredentials: false,
     };
+  },
+  components:{
+    LoginBox
   },
   methods: {
     login() {
@@ -86,6 +90,10 @@ export default {
         })
         .catch((err) => console.error(err));
     },
+    dealWithIt(lo){
+      this.user = lo;
+      this.login();
+    }
   },
 };
 </script>
