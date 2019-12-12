@@ -25,6 +25,7 @@
 	serves integer,
 	difficulty nvarchar(30),
 	category nvarchar(20) NOT NULL,
+	img_url nvarchar(100),
 	CONSTRAINT pk_recipe_id PRIMARY KEY (id)
 	);
 
@@ -55,7 +56,7 @@
 	username nvarchar(64) NOT NULL,
 	meal_slot smallint NOT NULL, --between 0 and 5 breakfast, lunch, dinner, snack, Not Specified  
 	meal_date Date NOT NULL,
-	CONSTRAINT pk_meal_plan_username_meal_date_meal_slot PRIMARY KEY (username, meal_date, meal_slot)
+	CONSTRAINT pk_meal_plan_username_meal_date_meal_slot_recipe_id PRIMARY KEY (username, meal_date, meal_slot, recipe_id)
 	);
 
 	CREATE TABLE Account (
