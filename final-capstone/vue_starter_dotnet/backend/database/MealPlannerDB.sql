@@ -220,6 +220,8 @@ INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measu
 	SELECT recipe.*, ingredient.*, ingredient_recipe.quantity, ingredient_recipe.unit_of_measurement FROM recipe
 	JOIN ingredient_recipe ON recipe.id = ingredient_recipe.recipe_id
 	JOIN Ingredient ON Ingredient.id = ingredient_recipe.ingredient_id
+	
+	SELECT * FROM ingredient
 
 
 	select * from account
