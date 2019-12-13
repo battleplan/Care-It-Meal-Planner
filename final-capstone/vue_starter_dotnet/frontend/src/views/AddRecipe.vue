@@ -12,7 +12,11 @@
         <label for="instructions">Instructions:</label>
         <input type="textarea" id="instructions" v-model="recipe.instructions" placeholder="How do you make the recipe?">
       </li>
-      <li>
+<!--       <select name="ingredients" id="ingredients">
+      <option>
+      </option>
+      </select>
+ -->      <li>
         <label for="cooktime">Cook Time</label>
         <input type="number" id="cooktime" v-model="recipe.cooktime" placeholder="Cook Time">
       
@@ -71,6 +75,7 @@ export default {
       category: 'American',
       ingredients:[{id: 99, name: 'testIngredient1'}, {id: 100, name: 'testIngredient2'}]
       },
+      
     }
   },
   methods: {
@@ -108,10 +113,9 @@ export default {
 
 <style scoped>
 
-
 #formadd {
   font: normal 18px/1.5 "Fira Sans", "Helvetica Neue", sans-serif;
-  background: #fba919;
+  background: rgba(0, 0, 0, 0.72);
   color: #fff;
   padding: 50px 0;
 }
