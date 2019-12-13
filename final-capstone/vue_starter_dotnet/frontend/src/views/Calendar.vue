@@ -110,7 +110,7 @@ export default {
 	data() {
 		return {
 			/* Show the current month, and give it some fake items to show */
-			showDate: this.thisMonth(1),
+			showDate: this.thisMonth(13),
 			message: "",
 			startingDayOfWeek: 0,
 			disablePast: true,
