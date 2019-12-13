@@ -8,6 +8,7 @@
   </div>
   <input type="text" v-model="login.username" placeholder="Username" />
   <input type="password" v-model="login.password" placeholder="Password" />
+  <!-- TODO make just the text a link -->
   <router-link id="register-link" :to="{ name: 'register' }">Need an account?</router-link>
   <button >Log in</button>
  </form>
