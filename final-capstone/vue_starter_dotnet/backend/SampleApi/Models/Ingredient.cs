@@ -21,7 +21,7 @@ namespace SampleApi.Models
         /// <summary>
         /// Amount of the ingredient needed for the recipe
         /// </summary>
-        public double Quantity { get; set; }
+        public string Quantity { get; set; }
         /// <summary>
         /// unit of measurement used for the ingredient in the recipe
         /// </summary>
@@ -33,7 +33,7 @@ namespace SampleApi.Models
         /// <param name="name"></param>
         /// <param name="quantity"></param>
         /// <param name="unitOfMeasurement"></param>
-        public Ingredient(int id, string name, double quantity, string unitOfMeasurement)
+        public Ingredient(int id, string name, string quantity, string unitOfMeasurement)
         {
             Id = id;
             Name = name;

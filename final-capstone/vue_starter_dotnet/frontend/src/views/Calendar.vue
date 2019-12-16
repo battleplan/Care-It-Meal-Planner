@@ -110,7 +110,10 @@ export default {
 	data() {
 		return {
 			/* Show the current month, and give it some fake items to show */
-			showDate: this.thisMonth(16),
+
+			
+			showDate: this.thisMonth(13),
+
 			message: "",
 			startingDayOfWeek: 0,
 			disablePast: true,
@@ -207,12 +210,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 html,
 body {
 	height: 100%;
 	margin: 0;
-	background-color: #e9c5a7;
 }
 #cal {
 	display: flex;

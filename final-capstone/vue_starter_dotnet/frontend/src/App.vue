@@ -20,6 +20,7 @@
     
   </ul>
 </nav>
+<img id="background" src="../public/background_img.jpg" />
     </div>
     <router-view/>
   </div>
@@ -32,6 +33,11 @@ export default {
 </script>
 import Login from ''
 <style scoped>
+
+
+body {
+	margin: 0px;
+}
 
 .dropdownmenu ul, .dropdownmenu li {
 	margin: 0;
@@ -71,9 +77,10 @@ import Login from ''
 	top: 35px;
 	visibility: hidden;
 	z-index: 1;
+	
 }
-li:hover ul#submenu {
-	opacity: 1;
+li:hover ul#submenu{
+opacity: 1;
 	top: 40px;	/* adjust this as per top nav padding top & bottom comes */
 	visibility: visible;
 }
@@ -87,4 +94,20 @@ li:hover ul#submenu {
 #submenu a {
 	background-color:#c35e00;
 }
+
+#background {
+	z-index: -10;
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	filter:brightness(70%)
+	}
+
+div#app {
+	position: absolute;
+	width: 100%;
+	margin: 0px;
+}
+
 </style>
