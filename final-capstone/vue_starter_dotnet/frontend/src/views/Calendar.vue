@@ -207,12 +207,12 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 html,
 body {
 	height: 100%;
 	margin: 0;
-	background-color: #e9c5a7;
 }
 #cal {
 	display: flex;

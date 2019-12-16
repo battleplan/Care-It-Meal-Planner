@@ -248,7 +248,7 @@ namespace SampleApi.DAL
                         {
                             Id = Convert.ToInt32(reader["id"]),
                             Name = Convert.ToString(reader["name"]),
-                            Quantity = Convert.ToInt32(reader["quantity"]),
+                            Quantity = Convert.ToString(reader["quantity"]),
                             UnitOfMeasurement = Convert.ToString(reader["unit_of_measurement"]),
                         });
                     }

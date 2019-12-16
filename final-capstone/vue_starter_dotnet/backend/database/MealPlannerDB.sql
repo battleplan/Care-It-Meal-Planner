@@ -39,7 +39,7 @@
 	ingredient_id integer NOT NULL,
 	username nvarchar(64) NOT NULL,
 	unit_of_measurement nvarchar(15) NOT NULL,
-	quantity integer NOT NULL,
+	quantity nvarchar(15) NOT NULL,
 	CONSTRAINT pk_pantry_ingredient_id_username PRIMARY KEY (ingredient_id, username)
 	);
 
@@ -47,7 +47,7 @@
 	ingredient_id integer NOT NULL,
 	username nvarchar(64) NOT NULL,
 	unit_of_measurement nvarchar(15) NOT NULL,
-	quantity integer NOT NULL,
+	quantity nvarchar(15) NOT NULL,
 	CONSTRAINT pk_shopping_list_ingredient_id_username PRIMARY KEY (ingredient_id, username)
 	);
 
@@ -79,7 +79,7 @@
 	CREATE TABLE ingredient_recipe (
 	recipe_id integer NOT NULL,
 	ingredient_id INTEGER NOT NULL,
-	quantity numeric NOT NULL,
+	quantity nvarchar(15) NOT NULL,
 	unit_of_measurement nvarchar(15),
 	CONSTRAINT pk_ingredient_id__recipe_id PRIMARY KEY (recipe_id, ingredient_id)
 	);
@@ -172,13 +172,13 @@ INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity) VALUES (2, 1,
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity) VALUES (3, 1, 2);
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (4, 1, 2, 'teaspoon');
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (5, 1, 2, 'teaspoon');
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (6, 1, 0.5, 'teaspoon')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (6, 1, '1/2', 'teaspoon')
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (7, 1, 3, 'cups')
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (8, 1, 1.33, 'cups')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (8, 1, '1 1/3', 'cups')
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (9, 1, 4, 'ounces')
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity) VALUES (10, 1, 4)
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (11, 1, 1, 'cup')
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (12, 1, 0.25, 'cup')
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES (12, 1, '1/4', 'cup')
 
 -- Recipe #2   https://www.food.com/recipe/jo-mamas-world-famous-spaghetti-22782
 
@@ -210,8 +210,8 @@ INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measu
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'tomato sauce'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 30, 'ounces');
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'dried basil'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 3, 'teaspoons');
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'dried parsley'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 2, 'teaspoons');
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'brown sugar'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 1.5, 'teaspoons');
-INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'crushed red pepper flakes'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 0.25, 'teaspoons');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'brown sugar'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), '1 1/2', 'teaspoons');
+INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'crushed red pepper flakes'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), '1/4', 'teaspoons');
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'thin spaghetti'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 1, 'pound');
 INSERT INTO ingredient_recipe (ingredient_id, recipe_id, quantity, unit_of_measurement) VALUES ((SELECT id FROM Ingredient WHERE name = 'italian sausage'), (SELECT id FROM recipe WHERE name = 'Jo Mamas World Famous Spaghetti'), 2, 'pounds');
 
