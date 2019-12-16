@@ -107,9 +107,9 @@ namespace SampleApi.Controllers
         /// <param name="updatedRecipe"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public ActionResult ModifyRecipe(int id, [FromBody]Recipe updatedRecipe)
+        public ActionResult ModifyRecipe([FromBody]Recipe updatedRecipe)
         {
-            Recipe existingItem = dao.GetRecipeById(id);
+            Recipe existingItem = dao.GetRecipeById(updatedRecipe.Id);
 
             if (existingItem == null)
             {

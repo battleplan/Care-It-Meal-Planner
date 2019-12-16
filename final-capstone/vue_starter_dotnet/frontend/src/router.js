@@ -6,6 +6,7 @@ import Login from './views/Login.vue'
 import Register from './views/Register.vue'
 import Recipe from './views/Recipe.vue'
 import AddRecipe from './views/AddRecipe.vue'
+import EditRecipe from './views/EditRecipe.vue'
 import Calendar from './views/Calendar.vue'
 import Test from './views/Test.vue'
 
@@ -62,6 +63,14 @@ const router = new Router({
       path: "/addrecipe",
       name: "addrecipe",
       component: AddRecipe,
+      meta: {
+        requiresAuth: false
+      }
+    },
+    {
+      path: "/editrecipe/:id",
+      name: "editrecipe",
+      component: EditRecipe,
       meta: {
         requiresAuth: false
       }

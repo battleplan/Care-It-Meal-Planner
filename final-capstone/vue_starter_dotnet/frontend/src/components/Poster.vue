@@ -1,12 +1,12 @@
 
 <template id="tpl-movie-data">
     <div class="movie__data">
-        <div class="movie__poster" v-if="!error"><span class="movie__poster--fill">
+        <div class="movie__poster" ><span class="movie__poster--fill">
                 <transition name="fade"><img src="../../public/mac.jpg" /></transition>
             </span><span class="movie__poster--featured">
                 <transition name="fade"><img src="../../public/mac.jpg" /></transition>
             </span></div>
-        <div class="movie__details" v-if="!error">
+        <div class="movie__details" >
             <h2 class="movie__title">{{recipe.name}}</h2>
             <ul class="movie__tags list--inline">
                 <li class="movie__rated">{{recipe.category}}</li>
@@ -21,9 +21,9 @@
                 </ul>
 
                 <p><strong>Serves:</strong> {{recipe.servings}}</p>
-                <ul class="movie__actors list--inline">
-                   <!--  <li v-for="actor in movie.Actors">{{actor}}</li> -->
-                </ul>
+                <router-link v-bind:to="{name:'editrecipe', params: {id: recipe.id}}">Edit This Recipe</router-link>
+                  
+                
             </div>
         </div>
         <!-- <div class="movie__error" v-show="error">
