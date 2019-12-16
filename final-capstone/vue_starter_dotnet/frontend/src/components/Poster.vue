@@ -39,7 +39,9 @@ export default {
     props:{
       recipe: Object,
     }
-}
+    
+  }
+
 </script>
 
 <style scoped lang="scss">
@@ -220,7 +222,7 @@ input {
         
         &[src="N/A"] {
           min-height: 206px;
-          opacity: 0;
+          opacity: 100;
         }
       }
     }

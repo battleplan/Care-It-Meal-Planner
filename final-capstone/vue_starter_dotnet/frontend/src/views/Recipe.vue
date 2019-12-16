@@ -23,7 +23,10 @@
         },
         data() {
             return {
-                recipe: null,
+                recipe: {
+                    name: 'blank',
+                    id: 1,
+                }
             }
         },
         methods: {

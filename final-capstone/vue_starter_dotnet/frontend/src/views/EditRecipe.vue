@@ -21,7 +21,7 @@
         },
         data() {
             return {
-                recipe: null,
+                recipe: {name:''},
             }
         },
         methods: {
@@ -39,15 +39,11 @@
       })
         
         .catch((err) => console.error(err));
+        //HERE WE DO A REDIRECT BACK TO THE (UPDATED) DETAILS PAGE
     }
             
         }, 
-        onCreated() {
-            //this.geRecipe(this.$route.params.id);
-            axios
-      .get(`${process.env.VUE_APP_REMOTE_API}/meal/${this.$route.params.id}`)
-      .then(response => (this.recipe = response.data))
-        },
+        
         mounted () {
     axios
       .get(`${process.env.VUE_APP_REMOTE_API}/meal/${this.$route.params.id}`)
