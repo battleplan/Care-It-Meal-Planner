@@ -36,9 +36,9 @@
             <li>
         <label for="ImageURL">Image URL</label>
         <input type="text" id="ImageURL" v-model="recipe.ImageURL" placeholder="Enter the location of the image">
-        
       </li>      
-   
+      <li>
+       
       <li>
         <b-form-select v-model="recipe.ingredients" :options="ingredients"></b-form-select>
         </li>    
@@ -57,7 +57,7 @@
             <label for="glutenfree">GF?</label>
           </li>
         </ul>
-      </li>
+      <!-- </li> -->
       <li>
         <button type="submit">Submit</button>
       </li>
@@ -80,11 +80,12 @@
 
 </div>
 
-
 </template>
 
 <script>
 import axios from 'axios';
+import PhotoHosting from "../components/PhotoHosting.vue";
+
 export default {
   data () {
     return {

@@ -9,6 +9,7 @@ import AddRecipe from './views/AddRecipe.vue'
 import EditRecipe from './views/EditRecipe.vue'
 import Calendar from './views/Calendar.vue'
 import Test from './views/Test.vue'
+import PhotoHosting from './components/PhotoHosting.vue'
 
 
 
@@ -65,6 +66,14 @@ const router = new Router({
       component: AddRecipe,
       meta: {
         requiresAuth: false
+      }
+    },
+    {
+      path: "/recphoto",
+      name: "recphoto",
+      component: PhotoHosting,
+      meta: {
+        requiresAuth: true
       }
     },
     {
