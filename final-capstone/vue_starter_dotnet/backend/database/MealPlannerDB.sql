@@ -25,7 +25,7 @@
 	serves integer,
 	difficulty nvarchar(30),
 	category nvarchar(20) NOT NULL,
-	img_url nvarchar(100),
+	img_url nvarchar(MAX),
 	CONSTRAINT pk_recipe_id PRIMARY KEY (id)
 	);
 

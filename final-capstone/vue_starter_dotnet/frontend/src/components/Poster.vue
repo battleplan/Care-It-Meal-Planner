@@ -138,8 +138,11 @@ input {
     justify-content: center;
     min-height: $poster-span * 2;
     overflow: hidden; 
+    background-color:whitesmoke;
     border-radius: 30px; 
     box-shadow: 10px 10px 100px rgba(0, 0, 0, 0.144);
+    margin:auto;
+    margin-top: 5%;
 
     @media (min-width: $bp-md) {
       flex-direction: row;
@@ -222,7 +225,7 @@ input {
         
         &[src="N/A"] {
           min-height: 206px;
-          opacity: 100;
+          opacity: 0;
         }
       }
     }
@@ -240,6 +243,7 @@ input {
   &__title {
     font-family: $font-heading;
     font-size: 2em;
+    color:black;
   }
   
   &__error {
@@ -319,7 +323,7 @@ input {
 }
 .fade-enter,
 .fade-leave-to {
-  opacity: 0;
+  opacity: 1;
 }
 
 .slide-fade-enter-active,
@@ -331,7 +335,7 @@ input {
 
 .slide-fade-enter,
 .slide-fade-leave-to {
-  opacity: 0;
+  opacity: 1;
   transform: translateY(12px);
 }
 
