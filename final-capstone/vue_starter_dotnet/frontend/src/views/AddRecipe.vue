@@ -122,6 +122,11 @@ export default {
 .then(response => this.responseData = response.data)
 .catch(error => {console.log(error)});
     },
+  getingredients () {
+    axios
+      .get(`${process.env.VUE_APP_REMOTE_API}/meal/api/ingredients`)
+     .then(response => this.ingredients = response.data)
+  },
     // API Call to get ingredients!  https://localhost:5001/api/meal/api/ingredients 
 addingredient () {
       fetch(`${process.env.VUE_APP_REMOTE_API}/meal/addingredient`, {
@@ -134,19 +139,6 @@ addingredient () {
         
       })
      .then(response => this.responseData = response.data)
-.catch(error => {console.log(error)});
-    },
-    addrecipe() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/meal/`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(this.recipe),
-        
-      })
-.then(response => this.responseData = response.data)
 .catch(error => {console.log(error)});
     },
 
