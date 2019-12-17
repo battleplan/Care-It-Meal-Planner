@@ -112,7 +112,7 @@ export default {
 			/* Show the current month, and give it some fake items to show */
 
 			
-			showDate: this.thisMonth(13),
+			showDate: this.thisMonth(17),
 
 			message: "",
 			startingDayOfWeek: 0,

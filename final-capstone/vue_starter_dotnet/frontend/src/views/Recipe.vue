@@ -39,7 +39,7 @@
         },
         mounted () {
     axios
-      .get(`${process.env.VUE_APP_REMOTE_API}/meal/${this.$route.params.id}`)
+      .get(`${process.env.VUE_APP_REMOTE_API}/api/meal/${this.$route.params.id}`)
       .then(response => (this.recipe = response.data))
   }
     }

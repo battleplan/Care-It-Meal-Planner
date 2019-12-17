@@ -130,16 +130,17 @@ namespace SampleApi.Controllers
         /// </summary>
         /// <param name="mealPlan"></param>
         /// <returns></returns>
-        [HttpPost]
-        public ActionResult<MealPlan> AddToMealPlan([FromBody]MealPlan mealPlan)
-        {
-            bool worked = dao.AddToMealPlan(mealPlan);
-            if (worked)
-            {
-                return NoContent();
-            }
-            return null;
-        }
+        /// 
+        //[HttpPost]
+        //public ActionResult<MealPlan> AddToMealPlan([FromBody]MealPlan mealPlan)
+        //{
+        //    bool worked = dao.AddToMealPlan(mealPlan);
+        //    if (worked)
+        //    {
+        //        return NoContent();
+        //    }
+        //    return null;
+        //}
 
         /// <summary>
         /// API call for deleting from the meal plan database

@@ -4,33 +4,38 @@
 <div id="formadd" class="container">
   <form @submit.prevent="addrecipe">
     <ul class="flex-outer">
+      <h2 align="center">Add a Recipe to the Database</h2>
       <li>
         <label for="name">Recipe Name</label>
         <input type="text" id="name" v-model="recipe.name" placeholder="Enter your recipe name here">
       </li>
       <li>
         <label for="instructions">Instructions:</label>
-        <input type="textarea" id="instructions" v-model="recipe.instructions" placeholder="How do you make the recipe?">
+        <input type="textarea" rows="20" cols="50" id="instructions" v-model="recipe.instructions" placeholder="How do you make the recipe?">
       </li>
-<!--       <select name="ingredients" id="ingredients">
-      <option>
-      </option>
-      </select>
- -->      <li>
+  <li>
         <label for="cooktime">Cook Time</label>
         <input type="number" id="cooktime" v-model="recipe.cooktime" placeholder="Cook Time">
       
         <label for="preptime">Prep Time </label>
         <input type="number" id="preptime" v-model="recipe.preptime" placeholder="Prep Time">
+
       </li>
       <li>
         <label for="servings">Servings</label>
         <input type="number" id="servings" v-model="recipe.servings" placeholder="Servings">
 
-        <label for="category">Category</label>
-        <input type="text" id="category" v-model="recipe.category" placeholder="i.e.  American, Italian, Mexican">
+        <label for="difficulty">Difficulty</label>
+        <input type="text" id="difficulty" v-model="recipe.difficulty" placeholder="i.e.  Easy,Challenging">
       </li>
       <li>
+        <label for="category">Category</label>
+        <input type="text" id="category" v-model="recipe.category" placeholder="i.e.  American, Italian, Mexican">
+        
+      </li>      
+      <li>
+        <b-form-select v-model="recipe.ingredients" :options="ingredients"></b-form-select>
+        </li>    
         
         <ul class="flex-inner">
           <li>
@@ -52,66 +57,67 @@
       </li>
     </ul>
   </form>
+    <form @submit.prevent="getingredients">
+              <button type="submit">Load Ingredients</button>
+
+</form>
+
 </div>
 
 
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
   data () {
     return {
       recipe: {
-      name: 'Form Test Recipe',
-      instructions: '1. Make Food - 2. Eat Food',
-      vegan: true,
+      name: '',
+      instructions: '',
+      vegan: false,
       vegetarian: false,
       glutenfree: false,
       cooktime: 30,
-      preptime: 40,
-      servings: 10,
-      difficulty: 'Super Easy',
-      category: 'American',
-      ingredients:[{id: 99, name: 'testIngredient1'}, {id: 100, name: 'testIngredient2'}]
+      preptime: 60,
+      servings: 4,
+      difficulty: '',
+      category: '',
+      ingredients:[]
       },
-      
+      ingredients: [],
     }
   },
   methods: {
     addrecipe() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/meal`, {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/meal/`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(this.recipe),
+        
       })
-        .then((response) => {
-          if (response.ok) {
-            return response.text();
-          } else {
-            this.invalidCredentials = true;
-          }
-        })
-        .then((token) => {
-          if (token != undefined) {
-            if (token.includes('"')) {
-              token = token.replace(/"/g, '');
-            }
-            auth.saveToken(token);
-            this.$router.push('/');
-          }
-        })
-        .catch((err) => console.error(err));
+.then(response => this.responseData = response.data)
+.catch(error => {console.log(error)});
     },
-  },
-
+    // API Call to get ingredients!  https://localhost:5001/api/meal/api/ingredients 
+getingredients () {
+    axios
+      .get(`${process.env.VUE_APP_REMOTE_API}/api/meal/api/ingredients`)
+     .then(response => this.ingredients = response.data)
+    },
+  }
 }
+  
 </script>
 
 <style scoped>
+
+textarea {
+  border: 1px solid #888; 
+}
 
 #formadd {
   font: normal 18px/1.5 "Fira Sans", "Helvetica Neue", sans-serif;

@@ -25,7 +25,7 @@ export default {
   },
   mounted () {
     axios
-      .get(`${process.env.VUE_APP_REMOTE_API}/meal`)
+      .get(`${process.env.VUE_APP_REMOTE_API}/api/meal`)
       .then(response => (this.items = response.data))
   }
 }
