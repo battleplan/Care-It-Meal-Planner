@@ -344,11 +344,15 @@ namespace SampleApi.DAL
 
         private Ingredient RowToIngredient(SqlDataReader ingReader)
         {
-            return new Ingredient()
+            if (ingReader.HasRows)
             {
-                Id = Convert.ToInt32(ingReader["id"]),
-                Name = Convert.ToString(ingReader["name"]),
-            };
+                return new Ingredient()
+                {
+                    Id = Convert.ToInt32(ingReader["id"]),
+                    Name = Convert.ToString(ingReader["ingname"]),
+                };
+            }
+            return new Ingredient();
         }
 
         private MealPlan RowToMealPlan(SqlDataReader reader)
