@@ -429,7 +429,7 @@ namespace SampleApi.DAL
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM ingredient", conn);
+                    SqlCommand cmd = new SqlCommand("select id, name as ingname from Ingredient", conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 

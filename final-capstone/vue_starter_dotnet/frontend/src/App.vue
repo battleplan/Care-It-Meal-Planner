@@ -10,9 +10,9 @@
     </ul>
 
 	</li>
-    <li><a href="/calendar">Meal Planner (WIP)</a>
+    <li><a href="/test">Meal Planner (WIP)</a>
       <ul id="submenu">
-        <li><a href="/test">Testing Vue</a></li>
+        <li><a href="/calendar">Old Calendar</a></li>
       </ul>
     </li>
     <li><a href="/">Pantry</a></li>
