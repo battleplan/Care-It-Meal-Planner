@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     login() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/accounts/login`, {
+      fetch(`https://localhost:5001/api/accounts/login`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
