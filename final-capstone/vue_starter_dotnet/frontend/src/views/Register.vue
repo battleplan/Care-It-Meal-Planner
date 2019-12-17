@@ -32,6 +32,7 @@
         v-model="user.confirmPassword"
         required
       />
+      <br />
       <router-link id="login-link" :to="{ name: 'login' }">
         Have an account?
       </router-link>

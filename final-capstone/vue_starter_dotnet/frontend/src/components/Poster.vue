@@ -2,9 +2,9 @@
 <template id="tpl-movie-data">
     <div class="movie__data">
         <div class="movie__poster" ><span class="movie__poster--fill">
-                <transition name="fade"><img src="../../public/mac.jpg" /></transition>
+                <transition name="fade"><img v-bind:src="recipe.imageURL" /></transition>
             </span><span class="movie__poster--featured">
-                <transition name="fade"><img src="../../public/mac.jpg" /></transition>
+                <transition name="fade"><img v-bind:src="recipe.imageURL" /></transition>
             </span></div>
         <div class="movie__details" >
             <h2 class="movie__title">{{recipe.name}}</h2>

@@ -7,11 +7,11 @@
         <div class="card-carousel">
             <div class="card-carousel--overflow-container">
                 <div class="card-carousel-cards" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">
-                    <div class="card-carousel--card" v-bind:key ="item.name" v-for="item in data"><img src="../../public/mac.jpg" />
+                    <div class="card-carousel--card" v-bind:key ="item.name" v-for="item in data"><router-link v-bind:to="{name:'recipe', params: {id: item.id}}"><div class="card-image"><img v-if="item.imageURL" v-bind:src="item.imageURL" /><img v-else src="https://media.discordapp.net/attachments/336402883798892547/656532266347921409/food.png" /></div>
                         <div class="card-carousel--card--footer">
-                            <p><router-link v-bind:to="{name:'recipe', params: {id: item.id}}">{{item.name}}</router-link></p>
+                            <p>{{item.name}}</p>
                             <p class="tag" >{{ item.category }}</p>
-                        </div>
+                        </div></router-link>
                     </div>
                 </div>
             </div>
@@ -68,10 +68,13 @@ justify-content: center;
 margin: 20px 0 40px;
 color: #666a73;
 }
+div.card-image{
+  background-color:white;
+}
  .card-carousel {
 display: flex;
 justify-content: center;
-width: 640px;
+width: 75%;
 }
  .card-carousel--overflow-container {
 overflow: hidden;
@@ -113,7 +116,7 @@ transform: translatex(0px);
 margin: 0 10px;
 cursor: pointer;
 box-shadow: 0 4px 15px 0 rgba(40, 44, 53, .06), 0 2px 2px 0 rgba(40, 44, 53, .08);
-background-color: #fff;
+background-color: rgb(252, 147, 27);
 border-radius: 4px;
 z-index: 3;
 margin-bottom: 2px;
@@ -132,13 +135,14 @@ transition: opacity 150ms linear;
 user-select: none;
 }
  .card-carousel-cards .card-carousel--card img:hover {
-opacity: 0.5;
+opacity: 0.8;
+
 }
- .card-carousel-cards .card-carousel--card--footer {
+ /* .card-carousel-cards .card-carousel--card--footer {
 border-top: 0;
 padding: 7px 15px;
 background-color: #fba919;
-}
+} */
  .card-carousel-cards .card-carousel--card--footer p {
 padding: 3px 0;
 margin: 0;
