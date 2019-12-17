@@ -26,6 +26,8 @@ namespace SampleApi.DAL
 
         bool CreateRecipe(Recipe newRecipe);
 
+        bool CreateIngredient(Ingredient ingredient);
+
         bool EditRecipe(Recipe recipe);
 
         bool DeleteRecipe(Recipe recipe);

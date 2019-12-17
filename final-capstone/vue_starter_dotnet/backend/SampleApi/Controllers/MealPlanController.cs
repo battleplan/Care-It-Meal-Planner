@@ -82,6 +82,22 @@ namespace SampleApi.Controllers
         }
 
         /// <summary>
+        /// API call for adding a ingredient to the database
+        /// </summary>
+        /// <param name="ingredient"></param>
+        /// <returns></returns>
+        [HttpPost("addingredient", Name = "Add Ingredient")]
+        public ActionResult<Recipe> AddIngredient([FromBody]Ingredient ingredient)
+        {
+            bool worked = dao.CreateIngredient(ingredient);
+            if (worked)
+            {
+                return Ok();
+            }
+            return null;
+        }
+
+        /// <summary>
         /// API call for deleting a recipe from a database
         /// </summary>
         /// <param name="id"></param>

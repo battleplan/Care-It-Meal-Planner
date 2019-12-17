@@ -63,6 +63,16 @@
       </li>
     </ul>
   </form>
+      <form @submit.prevent="addingredient">
+              <li>
+        <label for="name">Ingredient Name</label>
+        <input type="text" id="name" v-model="ingredient.name" placeholder="Enter your ingredient here">
+      </li>
+
+              <button type="submit">Add Ingredient to Database</button>
+
+</form>
+
     <form @submit.prevent="getingredients">
               <button type="submit">Load Ingredients</button>
 
@@ -93,6 +103,9 @@ export default {
       ingredients:[]
       },
       ingredients: [],
+      ingredient: {
+        name: '',
+      },
     }
   },
   methods: {
@@ -110,11 +123,33 @@ export default {
 .catch(error => {console.log(error)});
     },
     // API Call to get ingredients!  https://localhost:5001/api/meal/api/ingredients 
-getingredients () {
-    axios
-      .get(`${process.env.VUE_APP_REMOTE_API}/meal/api/ingredients`)
-     .then(response => this.ingredients = response.data)
+addingredient () {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/meal/addingredient`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.ingredient),
+        
+      })
+     .then(response => this.responseData = response.data)
+.catch(error => {console.log(error)});
     },
+    addrecipe() {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/meal/`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.recipe),
+        
+      })
+.then(response => this.responseData = response.data)
+.catch(error => {console.log(error)});
+    },
+
   }
 }
   
