@@ -92,7 +92,7 @@ namespace SampleApi.Controllers
             bool worked = dao.CreateIngredient(ingredient);
             if (worked)
             {
-                return Ok();
+                return NoContent();
             }
             return null;
         }
@@ -147,16 +147,16 @@ namespace SampleApi.Controllers
         /// <param name="mealPlan"></param>
         /// <returns></returns>
         /// 
-        //[HttpPost]
-        //public ActionResult<MealPlan> AddToMealPlan([FromBody]MealPlan mealPlan)
-        //{
-        //    bool worked = dao.AddToMealPlan(mealPlan);
-        //    if (worked)
-        //    {
-        //        return NoContent();
-        //    }
-        //    return null;
-        //}
+        [HttpPost("addmealplan", Name = "Add Meal Plan")]
+        public ActionResult<MealPlan> AddToMealPlan([FromBody]MealPlan mealPlan)
+        {
+            bool worked = dao.AddToMealPlan(mealPlan);
+            if (worked)
+            {
+                return NoContent();
+            }
+            return null;
+        }
 
         /// <summary>
         /// API call for deleting from the meal plan database
