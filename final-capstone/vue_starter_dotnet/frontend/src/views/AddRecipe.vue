@@ -32,7 +32,13 @@
         <label for="category">Category</label>
         <input type="text" id="category" v-model="recipe.category" placeholder="i.e.  American, Italian, Mexican">
         
+      </li>   
+            <li>
+        <label for="ImageURL">Image URL</label>
+        <input type="text" id="ImageURL" v-model="recipe.ImageURL" placeholder="Enter the location of the image">
+        
       </li>      
+   
       <li>
         <b-form-select v-model="recipe.ingredients" :options="ingredients"></b-form-select>
         </li>    
@@ -83,6 +89,7 @@ export default {
       servings: 4,
       difficulty: '',
       category: '',
+      ImageURL:'',
       ingredients:[]
       },
       ingredients: [],

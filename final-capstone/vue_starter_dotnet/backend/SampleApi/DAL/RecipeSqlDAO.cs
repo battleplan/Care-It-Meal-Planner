@@ -32,8 +32,8 @@ namespace SampleApi.DAL
                 {
                     conn.Open();
 
-                    SqlCommand addRec = new SqlCommand("INSERT INTO recipe(name, instructions, vegan, vegetarian, gluten_free, cook_time_in_mins, prep_time_in_mins, serves, difficulty, category)" +
-                        " VALUES (@Name, @IN, @Vegan, @VG, @GF, @CT, @PT, @Serves, @Difficulty, @Category); SELECT @@IDENTITY", conn);
+                    SqlCommand addRec = new SqlCommand("INSERT INTO recipe(name, instructions, vegan, vegetarian, gluten_free, cook_time_in_mins, prep_time_in_mins, serves, difficulty, category, img_url)" +
+                        " VALUES (@Name, @IN, @Vegan, @VG, @GF, @CT, @PT, @Serves, @Difficulty, @Category, @ImageURL); SELECT @@IDENTITY", conn);
                     addRec.Parameters.AddWithValue("@Name", newRecipe.Name);
                     addRec.Parameters.AddWithValue("@IN", newRecipe.Instructions);
                     addRec.Parameters.AddWithValue("@Vegan", newRecipe.Vegan);
@@ -44,6 +44,8 @@ namespace SampleApi.DAL
                     addRec.Parameters.AddWithValue("@Serves", newRecipe.Servings);
                     addRec.Parameters.AddWithValue("@Difficulty", newRecipe.Difficulty);
                     addRec.Parameters.AddWithValue("@Category", newRecipe.Category);
+                    addRec.Parameters.AddWithValue("@ImageURL", newRecipe.ImageURL);
+
 
                     newRecipe.Id = Convert.ToInt32(addRec.ExecuteScalar());
 
@@ -338,6 +340,7 @@ namespace SampleApi.DAL
                 Servings = Convert.ToInt32(reader["serves"]),
                 Difficulty = Convert.ToString(reader["difficulty"]),
                 Category = Convert.ToString(reader["category"]),
+                ImageURL = Convert.ToString(reader["img_url"])
             };
 
         }

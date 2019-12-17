@@ -65,6 +65,11 @@ namespace SampleApi.Models
         /// <summary>
         /// List of all of the ingredients in the recipe
         /// </summary>
+        public string ImageURL { get; set; }
+        /// <summary>
+        /// Address for the image of the recipe
+        /// </summary>
+
         public List<Ingredient> Ingredients { get; set; }
         /// <summary>
         /// constructor that takes all properties for ease of use
