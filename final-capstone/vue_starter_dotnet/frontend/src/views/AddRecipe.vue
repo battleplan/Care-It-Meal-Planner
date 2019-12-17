@@ -90,7 +90,7 @@ export default {
   },
   methods: {
     addrecipe() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/api/meal/`, {
+      fetch(`${process.env.VUE_APP_REMOTE_API}/meal/`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
@@ -105,7 +105,7 @@ export default {
     // API Call to get ingredients!  https://localhost:5001/api/meal/api/ingredients 
 getingredients () {
     axios
-      .get(`${process.env.VUE_APP_REMOTE_API}/api/meal/api/ingredients`)
+      .get(`${process.env.VUE_APP_REMOTE_API}/meal/api/ingredients`)
      .then(response => this.ingredients = response.data)
     },
   }
