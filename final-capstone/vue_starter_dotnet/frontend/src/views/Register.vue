@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     register() {
-      fetch(`${process.env.VUE_APP_REMOTE_API}/accounts/register`, {
+      fetch(`https://localhost:5001/api/accounts/register`, {
         method: 'POST',
         headers: {
           Accept: 'application/json',
