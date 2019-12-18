@@ -63,19 +63,54 @@
       </li>
     </ul>
   </form>
-      <form @submit.prevent="addingredient">
-              <li>
-        <label for="name">Ingredient Name</label>
-        <input type="text" id="name" v-model="ingredient.name" placeholder="Enter your ingredient here">
-      </li>
 
-              <button type="submit">Add Ingredient to Database</button>
+<form @submit.prevent="addingredient">
+<li>
+<label for="name">Ingredient Name</label>
+<input type="text" id="name" v-model="ingredient.name" placeholder="Enter your ingredient here">
+</li>
+<button type="submit">Add Ingredient to Database</button>
+</form>
+<hr>
 
+<form @submit.prevent="getingredients">
+<button type="submit">Load Ingredients</button>
 </form>
 
-    <form @submit.prevent="getingredients">
-              <button type="submit">Load Ingredients</button>
+<!-- <form>
+<div class="col-md-6 form-group">
+Add Ingredients
+<input v-model="recipe.ingredients" type="text" list="ingredients" />
+<datalist id="ingredients">
+<option v-for="ingredient in this.ingredients" v-bind:key="ingredient.id">{{ingredient.name}} </option>
+</datalist>
+</div>
+<button @click="addingredienttorecipe">Add Ingredient to Recipe</button>
 
+  </form> -->
+
+
+<form @submit.prevent="">
+<div>
+Add Ingredients
+<input v-bind="this.recipe.ingredients" type="text" list="ingredients" />
+<datalist id="ingredients">
+<option v-for="ingredient in this.ingredients" v-on:click.left="addingredienttorecipe(ingredient)" v-bind:key="ingredient.id">{{ingredient.name}} </option>
+</datalist>
+</div>
+<button type="submit">Add Ingredient to Recipe</button>
+</form>
+
+
+<form @submit.prevent="removeingredienttorecipe">
+<div>
+Remove Ingredients
+<input v-model="recipe.ingredients" type="text" list="ingredients" />
+<datalist id="ingredients">
+<option v-for="ingredient in this.recipe.ingredients" v-bind:key="ingredient.id">{{ingredient.name}} </option>
+</datalist>
+</div>
+<button type="submit">Remove Ingredient from Recipe</button>
 </form>
 
 </div>
@@ -84,7 +119,6 @@
 
 <script>
 import axios from 'axios';
-import PhotoHosting from "../components/PhotoHosting.vue";
 
 export default {
   data () {
@@ -111,8 +145,9 @@ export default {
       },
     }
   },
-  methods: {
-    addrecipe() {
+methods: {
+
+addrecipe() {
       fetch(`${process.env.VUE_APP_REMOTE_API}/meal/`, {
         method: 'POST',
         headers: {
@@ -122,20 +157,35 @@ export default {
         body: JSON.stringify(this.recipe),
         
       })
-.then(response => {this.returnrecipe = response.data; 
-const status = 
-        JSON.parse(response.status);
-if (status == '201') {
-       this.$router.push('/');
-      }})
-.catch(error => {console.log(error)});
-    },
-  getingredients () {
+    .then(response => {this.returnrecipe = response.data; 
+    const status = 
+            JSON.parse(response.status);
+    if (status == '201') {
+          this.$router.push('/');
+          }})
+    .catch(error => {console.log(error)});
+},
+
+addingredienttorecipe(){
+console.log('Is this being reached?');
+
+item => {
+this.recipe.ingredients.unshift(item)};
+console.log(this.recipe.ingredients);
+
+},
+
+removeingredienttorecipe(){
+this.recipe.ingredients.shift();
+},
+
+
+getingredients () {
     axios
       .get(`${process.env.VUE_APP_REMOTE_API}/meal/api/ingredients`)
      .then(response => this.ingredients = response.data)
   },
-    // API Call to get ingredients!  https://localhost:5001/api/meal/api/ingredients 
+
 addingredient () {
       fetch(`${process.env.VUE_APP_REMOTE_API}/meal/addingredient`, {
         method: 'POST',
@@ -147,8 +197,8 @@ addingredient () {
         
       })
      .then(response => this.responseData = response.data)
-.catch(error => {console.log(error)});
-    },
+    .catch(error => {console.log(error)});
+},
 
   }
 }
