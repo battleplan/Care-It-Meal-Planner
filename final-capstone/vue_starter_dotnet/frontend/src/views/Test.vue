@@ -11,15 +11,15 @@
      </tr>
   </thead>
   <tr v-for="(item, index) in itemsList">
-    <td>
+    <td align="center">
       <span v-show="!item.inEditMode">{{ item.meal }}</span>
       <input v-bind:placeholder="item.meal" v-show="item.inEditMode" v-model="item.meal" /> 
     </td>
-    <td>
-      <span v-show="!item.inEditMode">{{ item.itemName }}</span>
+    <td align="center">
+      <span v-show="!item.inEditMode"><router-link :to="{name:'recipe', params: {id: item.id}}">{{ item.itemName }}</router-link></span>
       <input v-bind:placeholder="item.itemName" v-show="item.inEditMode" v-model="item.itemName" />
     </td>
-    <td>
+    <td align="center">
       <button type="button" class="btn btn-success" v-show="item.inEditMode" @click="editItemComplete(item)"><i class="fa fa-save"></i> Save  </button>
       <button type="button" class="btn btn-info" v-show="!item.inEditMode" @click="editItem(item)"  ><i class="fa fa-edit"></i> Edit  </button>
       <button type="button" class="btn btn-danger" @click="removeItem(index)"><i class="fa fa-remove"></i> Delete  </button>

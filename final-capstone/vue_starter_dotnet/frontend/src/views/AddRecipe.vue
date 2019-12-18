@@ -107,6 +107,8 @@ export default {
       ingredient: {
         name: '',
       },
+      returnrecipe: {
+      },
     }
   },
   methods: {
@@ -120,7 +122,12 @@ export default {
         body: JSON.stringify(this.recipe),
         
       })
-.then(response => this.responseData = response.data)
+.then(response => {this.returnrecipe = response.data; 
+const status = 
+        JSON.parse(response.status);
+if (status == '201') {
+       this.$router.push('/');
+      }})
 .catch(error => {console.log(error)});
     },
   getingredients () {
