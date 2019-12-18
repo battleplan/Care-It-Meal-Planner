@@ -32,7 +32,7 @@ export default {
     return {
       currentOffset: 0,
       windowSize: 3,
-      paginationFactor: 220,
+      paginationFactor: 400,
     }
   },
   computed: {
@@ -61,6 +61,7 @@ background:#f8f8f8;
 color:#2c3e50;
 font-family: 'Source Sans Pro', sans-serif;
 }
+
  .card-carousel-wrapper {
 display: flex;
 align-items: center;
@@ -70,6 +71,12 @@ color: #666a73;
 }
 div.card-image{
   background-color:white;
+  
+}
+div.card-image > img{
+  object-fit:cover;
+  width: 350px;
+  height: 400px;
 }
  .card-carousel {
 display: flex;
@@ -81,15 +88,17 @@ overflow: hidden;
 }
  .card-carousel--nav__left, .card-carousel--nav__right {
 display: inline-block;
-width: 15px;
-height: 15px;
+width: 35px;
+height: 35px;
 padding: 10px;
 box-sizing: border-box;
-border-top: 2px solid black;
-border-right: 2px solid black;
+border-top: 5px solid rgb(184, 165, 2);
+border-right: 5px solid rgb(184, 165, 2);
 cursor: pointer;
 margin: 0 20px;
 transition: transform 150ms linear;
+background-color: rgb(192, 102, 0);
+
 }
  .card-carousel--nav__left[disabled], .card-carousel--nav__right[disabled] {
 opacity: 0.2;
@@ -133,6 +142,7 @@ border-top-left-radius: 4px;
 border-top-right-radius: 4px;
 transition: opacity 150ms linear;
 user-select: none;
+
 }
  .card-carousel-cards .card-carousel--card img:hover {
 opacity: 0.8;
