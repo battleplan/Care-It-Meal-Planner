@@ -5,7 +5,7 @@
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         There were problems registering this user.
       </div>
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only"></label>
       <input
         type="text"
         id="username"
@@ -15,7 +15,7 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <label for="password" class="sr-only"></label>
       <input
         type="password"
         id="password"
@@ -84,7 +84,15 @@ export default {
 <style>
 #regform {
   background-color: rgba(0, 0, 0, 0.72);
-  width: 45%;
+  width: 25%;
+  margin:auto;
+  margin-top: 10%;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  padding: 15px;
+  
 }
 
 .sr-only{
@@ -92,6 +100,7 @@ font-family: 'Archivo Black', sans-serif;
 color:#e0dada;
 margin-left:auto;
 margin-right:auto;
+text-align: center;
 }
 
 h2{
@@ -99,6 +108,7 @@ font-family: 'Archivo Black', sans-serif;
 color:#e0dada;
 margin-left:auto;
 margin-right:auto;
+text-align: center;
 }
 
 button{
@@ -111,12 +121,38 @@ border:none;
 color:#e0dada;
 cursor:pointer;
 font-size:16px;
+
 }
 
 #login-link {
 	color: orange;
 	text-align: center;
 }
-
-
+#register{
+display: block;
+text-align: center;
+margin: auto;
+margin-top: 10%;
+}
+#confirmPassword{
+  text-align: left;
+  padding: 5px 5px;
+  margin: 10px 0px;
+  background-color: #e0dada;
+  border: none;
+}
+#username{
+  text-align: left;
+  padding: 5px 5px;
+  margin: 10px 0px;
+  background-color: #e0dada;
+  border: none;
+}
+#password{
+  text-align: left;
+  padding: 5px 5px;
+  margin: 10px 0px;
+  background-color: #e0dada;
+  border: none;
+}
 </style>

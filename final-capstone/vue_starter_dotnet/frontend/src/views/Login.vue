@@ -125,4 +125,10 @@ text-align: center;
   text-align: center;
   
 }
+#login{
+display: block;
+text-align: center;
+margin: auto;
+margin-top: 10%;
+}
 </style>
