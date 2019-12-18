@@ -235,6 +235,14 @@ GO
 INSERT [dbo].[Recipe] ([name], [author], [instructions], [vegan], [vegetarian], [gluten_free], [cook_time_in_mins], [prep_time_in_mins], [serves], [difficulty], [category], [img_url]) VALUES (N'(V) Pesto Pasta with White Beans', N'anon', N'Place the cooked spaghetti in a large bowl and add the pesto. Stir well, adding enough of the reserved cooking liquid to achieve a creamy sauce. Add the beans and toss well.', 1, 1, 0, 20, 15, 4, N'Easy', N'Italian', N'https://www.forksoverknives.com/wp-content/uploads/fly-images/22757/Pesto-Pasta-with-White-Beans-300kb-1140x692-c.jpg')
 GO
 
+UPDATE Recipe
+SET img_url = 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F5566563.jpg&w=596&h=596&c=sc&poi=face&q=85'
+WHERE name = 'Chicken Zucchini Enchiladas'
+
+UPDATE Recipe
+SET img_url = 'https://img.sndimg.com/food/image/upload/c_thumb,q_80,w_576,h_324/v1/img/recipes/22/78/2/bMWnCGreSgeji8rnPIAp_JMWFS%204%20-%20final_1%20-%20horizontal.png'
+WHERE name = 'Jo Mamas World Famous Spaghetti'
+
 
 	select * from recipe
 	SELECT recipe.*, ingredient.*, ingredient_recipe.quantity, ingredient_recipe.unit_of_measurement FROM recipe
