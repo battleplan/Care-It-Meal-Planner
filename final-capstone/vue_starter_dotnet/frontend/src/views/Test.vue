@@ -1,7 +1,7 @@
 <template>
 <div id="formadd" class="container">
 <form id="shopping-list">
-  <h2>Meals for Monday</h2>
+  <h2>Meal Planner</h2>
 <table id="shopping-list-table" class="table table-condensed table-hover">
   <thead>
      <tr>
@@ -16,7 +16,7 @@
       <input v-bind:placeholder="item.meal" v-show="item.inEditMode" v-model="item.meal" /> 
     </td>
     <td align="center">
-      <span v-show="!item.inEditMode"><router-link :to="{name:'recipe', params: {id: item.id}}">{{ item.itemName }}</router-link></span>
+      <span v-show="!item.inEditMode"><router-link v-bind:to="{name:'recipe', params: {id: item.id}}">{{ item.itemName }}</router-link></span>
       <input v-bind:placeholder="item.itemName" v-show="item.inEditMode" v-model="item.itemName" />
     </td>
     <td align="center">
