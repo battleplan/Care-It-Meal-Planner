@@ -13,7 +13,10 @@
                 <li class="movie__year">{{recipe.cookTime + recipe.prepTime}} mins</li>
                 <li class="movie__genre">{{recipe.difficulty}}</li>
             </ul>
-            <p class="movie__plot">Instructions: {{recipe.instructions}}</p>
+            <ul style="list-style-type: none">
+              <li v-for="instruction in splitedStr">{{instruction}}</li>
+              </ul>
+            <!-- <p class="movie__plot">Instructions: {{recipe.instructions}}</p> -->
             <div class="movie__credits">
                 <p><strong>Submitted by:</strong> Ron</p>
                 <ul>Ingredients
@@ -42,7 +45,7 @@ export default {
     
 computed: {
   splitedStr() {
-    return this.recipe.instructions.split("Step");
+    return this.recipe.instructions.split("\n");
   }
 },
 }
