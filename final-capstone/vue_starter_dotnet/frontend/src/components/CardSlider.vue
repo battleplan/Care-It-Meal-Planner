@@ -161,6 +161,7 @@ font-size: 19px;
 font-weight: 500;
 color: white;
 user-select: none;
+align-content: center;
 }
  .card-carousel-cards .card-carousel--card--footer p.tag {
 font-size: 11px;
