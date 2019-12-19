@@ -236,11 +236,11 @@ INSERT [dbo].[Recipe] ([name], [author], [instructions], [vegan], [vegetarian], 
 GO
 
 UPDATE Recipe
-SET img_url = 'https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fimages.media-allrecipes.com%2Fuserphotos%2F5566563.jpg&w=596&h=596&c=sc&poi=face&q=85'
+SET img_url = 'https://images.media-allrecipes.com/userphotos/5566563.jpg'
 WHERE name = 'Chicken Zucchini Enchiladas'
 
 UPDATE Recipe
-SET img_url = 'https://img.sndimg.com/food/image/upload/c_thumb,q_80,w_576,h_324/v1/img/recipes/22/78/2/bMWnCGreSgeji8rnPIAp_JMWFS%204%20-%20final_1%20-%20horizontal.png'
+SET img_url = 'https://img.sndimg.com/food/image/upload/q_92,fl_progressive,w_1200,c_scale/v1/img/recipes/22/78/2/bMWnCGreSgeji8rnPIAp_JMWFS%204%20-%20final_1%20-%20horizontal.png'
 WHERE name = 'Jo Mamas World Famous Spaghetti'
 
 
