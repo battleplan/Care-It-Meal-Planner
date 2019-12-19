@@ -15,7 +15,7 @@
             </ul>
             <p class="movie__plot">Instructions: {{recipe.instructions}}</p>
             <div class="movie__credits">
-                <p><strong>Written by:</strong> {{recipe.author}}</p>
+                <p><strong>Submitted by:</strong> Ron</p>
                 <ul>Ingredients
                   <li v-for="ing in recipe.ingredients" v-bind:key="ing.id">{{ing.quantity}} {{ing.unitOfMeasurement}} {{ing.name}}</li>
                 </ul>
@@ -38,9 +38,14 @@ export default {
     name: "poster",
     props:{
       recipe: Object,
-    }
+    },
     
+computed: {
+  splitedStr() {
+    return this.recipe.instructions.split("Step");
   }
+},
+}
 
 </script>
 
@@ -74,6 +79,7 @@ $bp-sm: 400px;
 
 h1, h2, p, ul {
   line-height: 1.2;
+  text-align: left;
   
   &:not(:last-child) {
     margin-bottom: $base-spacing;

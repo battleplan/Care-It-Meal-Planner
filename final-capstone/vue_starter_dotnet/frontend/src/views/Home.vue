@@ -1,8 +1,10 @@
 <template>
   <div class="home">
     <h1>Epstein didn't kill himself</h1>
-    <card-slider v-bind:data="this.items"></card-slider>
+    <h2><img class="careit" src="../../public/Careit.png"></h2>
     
+    <card-slider v-bind:data="this.items"></card-slider>
+
   </div>
   
 </template>
@@ -34,5 +36,16 @@ export default {
 <style scoped>
 h1 {
   font-size:1px
+}
+
+h2 {
+  font-family: 'Nunito', sans-serif;
+  z-index: 99;
+  text-shadow: 3px 3px 8px black;
+  color: white;
+}
+
+.careit {
+  width: 550px;
 }
 </style>

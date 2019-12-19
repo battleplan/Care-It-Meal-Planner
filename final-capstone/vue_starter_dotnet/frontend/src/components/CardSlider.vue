@@ -7,9 +7,10 @@
         <div class="card-carousel">
             <div class="card-carousel--overflow-container">
                 <div class="card-carousel-cards" :style="{ transform: 'translateX' + '(' + currentOffset + 'px' + ')'}">
-                    <div class="card-carousel--card" v-bind:key ="item.name" v-for="item in data"><router-link v-bind:to="{name:'recipe', params: {id: item.id}}"><div class="card-image"><img v-if="item.imageURL" v-bind:src="item.imageURL" /><img v-else src="https://media.discordapp.net/attachments/336402883798892547/656532266347921409/food.png" /></div>
+                    <div class="card-carousel--card" v-bind:key ="item.name" v-for="item in data">
+                      <router-link v-bind:to="{name:'recipe', params: {id: item.id}}"><div class="card-image"><img v-if="item.imageURL" v-bind:src="item.imageURL" /><img v-else src="https://media.licdn.com/dms/image/C4E03AQGKOEabTLNvCw/profile-displayphoto-shrink_200_200/0?e=1582156800&v=beta&t=KNrqt6-P66DxVWxg6OIuJ79q2mssEn-69T1MGg9PbHE" /></div>
                         <div class="card-carousel--card--footer">
-                            <p>{{item.name}}</p>
+                            <p class="name">{{item.name}}</p>
                             <p class="tag" >{{ item.category }}</p>
                         </div></router-link>
                     </div>
@@ -69,6 +70,7 @@ justify-content: center;
 margin: 20px 0 40px;
 color: #666a73;
 }
+
 div.card-image{
   background-color:white;
   
@@ -82,6 +84,7 @@ div.card-image > img{
 display: flex;
 justify-content: center;
 width: 75%;
+box-shadow: 12px 12px 40px black;
 }
  .card-carousel--overflow-container {
 overflow: hidden;
@@ -97,7 +100,7 @@ border-right: 5px solid rgb(184, 165, 2);
 cursor: pointer;
 margin: 0 20px;
 transition: transform 150ms linear;
-background-color: rgb(192, 102, 0);
+/* background-color: rgb(192, 102, 0); */
 
 }
  .card-carousel--nav__left[disabled], .card-carousel--nav__right[disabled] {
@@ -157,11 +160,17 @@ background-color: #fba919;
 padding: 3px 0;
 margin: 0;
 margin-bottom: 2px;
-font-size: 19px;
+font-size: 24px;
 font-weight: 500;
 color: white;
 user-select: none;
-align-content: center;
+text-align: center;
+font-family: "Lato", sans-serif;
+font-weight: bold;
+}
+
+ .card-carousel-cards .card-carousel--card--footer p.name {
+text-decoration: none !important;
 }
  .card-carousel-cards .card-carousel--card--footer p.tag {
 font-size: 11px;
@@ -170,8 +179,10 @@ padding: 4px;
 background: rgba(40, 44, 53, .06);
 display: inline-block;
 position: relative;
-margin-left: 4px;
 color:white;
+left: 20px;
+bottom: 0px;
+margin-bottom: 10px;
 }
  .card-carousel-cards .card-carousel--card--footer p.tag:before {
 content: "";
@@ -210,6 +221,10 @@ font-weight: 100;
 text-align: center;
 margin-bottom: 0;
 color: #42b883;
+}
+
+* {
+  text-decoration: none;
 }
  
 </style>

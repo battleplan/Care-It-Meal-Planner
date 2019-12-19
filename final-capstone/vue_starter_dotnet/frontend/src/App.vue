@@ -4,18 +4,18 @@
       <nav class="dropdownmenu">
   <ul>
     <li><router-link to="/">Home</router-link></li>
-    <li><a href="/">My Recipes</a>
-		<ul id="submenu">
-        <li><a href="/addrecipe">Add Recipe (WIP)</a></li>
-    </ul>
+    <li><a href="/addrecipe">Add Recipe</a>
+		<!-- <ul id="submenu">
+        <li></li>
+    </ul> -->
 
 	</li>
-    <li><a href="/test">Meal Planner (WIP)</a>
-      <ul id="submenu">
+    <li><a href="/test">Meal Planner</a>
+      <!-- <ul id="submenu">
         <li><a href="/calendar">Old Calendar</a></li>
-      </ul>
+      </ul> -->
     </li>
-    <li><a href="/">Pantry</a></li>
+    <li><a href="/" v-on:click="logout()">Logout</a></li>
     
     
   </ul>
@@ -31,6 +31,12 @@
 <script>
 export default {
   
+methods: {
+	logout (){
+	window.localStorage.removeItem('Authorization');
+	this.$router.push('/');
+	}
+  }
 }
 </script>
 import Login from ''

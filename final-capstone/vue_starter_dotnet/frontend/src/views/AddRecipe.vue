@@ -54,7 +54,7 @@
           </li>
           <li>
             <input type="checkbox" id="glutenfree" v-model="recipe.glutenfree">
-            <label for="glutenfree">GF?</label>
+            <label for="glutenfree">Gluten-Free?</label>
           </li>
         </ul>
       <!-- </li> -->
@@ -64,7 +64,7 @@
     </ul>
   </form>
 
-<form @submit.prevent="addingredient">
+<!-- <form @submit.prevent="addingredient">
 <li>
 <label for="name">Ingredient Name</label>
 <input type="text" id="name" v-model="ingredient.name" placeholder="Enter your ingredient here">
@@ -75,7 +75,7 @@
 
 <form @submit.prevent="getingredients">
 <button type="submit">Load Ingredients</button>
-</form>
+</form> -->
 
 <!-- <form>
 <div class="col-md-6 form-group">
@@ -90,7 +90,7 @@ Add Ingredients
   </form> -->
 
 
-<form @submit.prevent="">
+<!-- <form @submit.prevent="">
 <div>
 Add Ingredients
 <input v-bind="this.recipe.ingredients" type="text" list="ingredients" />
@@ -111,7 +111,7 @@ Remove Ingredients
 </datalist>
 </div>
 <button type="submit">Remove Ingredient from Recipe</button>
-</form>
+</form> -->
 
 </div>
 
@@ -288,7 +288,7 @@ textarea {
   margin-left: auto;
   padding: 8px 16px;
   border: none;
-  background: #333;
+  background: #fba919;
   color: #f2f2f2;
   text-transform: uppercase;
   letter-spacing: .09em;

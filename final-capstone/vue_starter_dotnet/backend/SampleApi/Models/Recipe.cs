@@ -101,6 +101,7 @@ namespace SampleApi.Models
             Difficulty = difficulty;
             Category = category;
             Ingredients = new List<Ingredient>();
+            ImageURL = "https://cdn5.vectorstock.com/i/1000x1000/35/94/coming-soon-round-orange-sticker-isolated-on-white-vector-8983594.jpg";
         }
         /// <summary>
         /// Default constructor for ease of use
